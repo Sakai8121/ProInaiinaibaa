@@ -46,8 +46,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Asset1\CodeRedCat\4kVectorLandscape\Demo\Scripts\CameraScroll.cs" />
-    <Compile Include="Assets\Scripts\HandStateHolder.cs" />
+    <Compile Include="Assets\Scripts\General\PlaySceneLifeTimeScope.cs" />
+    <Compile Include="Assets\Scripts\Model\Player\HandStateHolder.cs" />
+    <Compile Include="Assets\Scripts\Model\Player\HiddenObjectStateHolder.cs" />
+    <Compile Include="Assets\Scripts\Presenter\HandPresenter.cs" />
+    <Compile Include="Assets\Scripts\General\DisposeManager.cs" />
+    <Compile Include="Assets\Scripts\Model\Player\PlayerStateHolder.cs" />
     <Compile Include="Assets\Asset1\CodeRedCat\4kVectorLandscape\Demo\Scripts\SimpleParallaxScroller.cs" />
+    <Compile Include="Assets\Scripts\View\HandViewMono.cs" />
+    <Compile Include="Assets\Scripts\Model\Player\PlayerInputMono.cs" />
     <None Include="Library\PackageCache\com.unity.burst@1.8.12\package.json" />
     <None Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\README.txt" />
     <None Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\package.json" />
@@ -337,11 +344,11 @@
     <Reference Include="Unity.Collections.LowLevel.ILSupport">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\PackageCache\com.unity.visualscripting@1.9.2\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="DOTween">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\PackageCache\com.unity.visualscripting@1.9.2\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.22f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -727,14 +734,14 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    <Reference Include="VContainer">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\VContainer.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="VContainer">
-      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\VContainer.dll</HintPath>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
@@ -813,13 +820,13 @@
       <Project>{aa17bf9e-c847-9728-e0ee-5fa5474b547e}</Project>
       <Name>Unity.Mathematics.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Unity.2D.Tilemap.Extras.Editor.csproj">
-      <Project>{1a62eafe-7715-597f-ab3e-35f7bdf23d14}</Project>
-      <Name>Unity.2D.Tilemap.Extras.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="UniRx.csproj">
       <Project>{9bea10ed-a175-69fd-30c0-d4ced40d573e}</Project>
       <Name>UniRx</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.2D.Tilemap.Extras.Editor.csproj">
+      <Project>{1a62eafe-7715-597f-ab3e-35f7bdf23d14}</Project>
+      <Name>Unity.2D.Tilemap.Extras.Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Collections.csproj">
       <Project>{9e00055e-8f4c-bcd2-0547-cd73cfa53cc3}</Project>

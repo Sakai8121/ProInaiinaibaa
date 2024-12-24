@@ -62,8 +62,8 @@
     <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\ObserveExtensions.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\Never.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\FromEvent.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Subjects\ConnectableObservable.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\Last.cs" />
+    <Compile Include="Assets\Plugins\UniRx\Scripts\Subjects\ConnectableObservable.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\Triggers\ObservableInitializePotentialDragTrigger.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\Triggers\ObservableCancelTrigger.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\Triggers\ObservableDeselectTrigger.cs" />
@@ -75,8 +75,8 @@
     <Compile Include="Assets\Plugins\UniRx\Scripts\Tasks\TaskObservableExtensions.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\PairWise.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\Dematerialize.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Subjects\Subject.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Notification.cs" />
+    <Compile Include="Assets\Plugins\UniRx\Scripts\Subjects\Subject.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\TakeLast.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Observable.Binding.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\Triggers\ObservableJointTrigger.cs" />
@@ -216,8 +216,8 @@
     <Compile Include="Assets\Plugins\UniRx\Scripts\Notifiers\ScheduledNotifier.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Schedulers\IScheduler.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\Select.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\AsyncOperationExtensions.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\InternalUtil\CancellableTaskCompletionSource.cs" />
+    <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\AsyncOperationExtensions.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\System\IObserver.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Schedulers\CurrentThreadScheduler.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\FrameInterval.cs" />
@@ -234,8 +234,8 @@
     <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\ReactiveCommand.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\Concat.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Disposables\ICancelable.cs" />
-    <Compile Include="Assets\Plugins\UniRx\Scripts\Observable.Awaiter.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Operators\OperatorObserverBase.cs" />
+    <Compile Include="Assets\Plugins\UniRx\Scripts\Observable.Awaiter.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\ScenePlaybackDetector.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\Disposables\CompositeDisposable.cs" />
     <Compile Include="Assets\Plugins\UniRx\Scripts\UnityEngineBridge\Triggers\ObservableFixedUpdateTrigger.cs" />
@@ -549,6 +549,9 @@
     <Reference Include="Unity.Plastic.Antlr3.Runtime">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="DOTweenEditor">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Plastic.Newtonsoft.Json">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\PackageCache\com.unity.collab-proxy@2.6.0\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -558,17 +561,14 @@
     <Reference Include="Unity.VisualScripting.IonicZip">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\PackageCache\com.unity.visualscripting@1.9.2\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
     </Reference>
+    <Reference Include="DOTween">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\PackageCache\com.unity.visualscripting@1.9.2\Runtime\VisualScripting.Flow\Dependencies\NCalc\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualScripting.TextureAssets">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\PackageCache\com.unity.visualscripting@1.9.2\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTweenEditor">
-      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Assets\Plugins\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.22f1\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
