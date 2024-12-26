@@ -22,32 +22,29 @@ namespace Model.Enemy
         
         public Option<EnemyView> GenerateEnemy(EnemyKind enemyKind)
         {
-            switch (enemyKind)
+            return enemyKind switch
             {
-                case EnemyKind.Adult:
-                    return _enemyAdultViewMono.Match<Option<EnemyView>>(
-                        None: () =>
-                        {
-                            Debug.LogError("No Adult Enemy prefab available.");
-                            return Function.none; // Return the initial None result
-                        },
-                        Some: enemyPrefab => GenerateEnemyAdult(enemyPrefab));
+                EnemyKind.Adult => _enemyAdultViewMono.Match<Option<EnemyView>>(
+                    None: () =>
+                    {
+                        Debug.LogError("No Adult Enemy prefab available.");
+                        return Function.none;
+                    },
+                    Some: enemyPrefab => GenerateEnemyAdult(enemyPrefab)
+                ),
 
-
-                case EnemyKind.Baby:
-                    return _enemyBabyViewMono.Match<Option<EnemyView>>(
-                        None: () =>
-                        {
-                            Debug.LogError("No Adult Enemy prefab available.");
-                            return Function.none; // Return the initial None result
-                        },
-                        Some: enemyPrefab => GenerateEnemyBaby(enemyPrefab));
-
-                default:
-                    Debug.LogError($"Unhandled EnemyKind: {enemyKind}");
-                    return Function.none;
-            }
+                EnemyKind.Baby => _enemyBabyViewMono.Match<Option<EnemyView>>(
+                    None: () =>
+                    {
+                        Debug.LogError("No Baby Enemy prefab available.");
+                        return Function.none;
+                    },
+                    Some: enemyPrefab => GenerateEnemyBaby(enemyPrefab)
+                ),
+                _ => Function.none
+            };
         }
+
 
         EnemyView InstantiateEnemyAdultView(EnemyAdultViewMono enemyAdultViewMono)
         {
