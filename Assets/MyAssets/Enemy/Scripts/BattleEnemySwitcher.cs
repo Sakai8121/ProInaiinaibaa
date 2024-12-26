@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MobileLibrary.Function;
 using MyAssets.Enemy.Scripts;
+using UniRx;
 using UnityEngine;
 using VContainer;
 
@@ -9,21 +10,26 @@ namespace Model.Enemy
 {
     public class BattleEnemySwitcher
     {
-        public Option<EnemyResult> CurrentBattleEnemy => _currentBattleEnemy;
-        public List<Option<EnemyResult>> WaitingEnemyList => _waitingEnemyList;
+        public IReadOnlyReactiveProperty<Option<EnemyResult>> CurrentBattleEnemy => _currentBattleEnemy;
+        public IReadOnlyReactiveProperty<Option<EnemyResult>> PreBattleEnemy => _preBattleEnemy;
+        public IReadOnlyReactiveProperty<List<Option<EnemyResult>>> WaitingEnemyList => _waitingEnemyList;
         
-        Option<EnemyResult> _currentBattleEnemy;
-        List<Option<EnemyResult>> _waitingEnemyList;
+        ReactiveProperty<Option<EnemyResult>> _currentBattleEnemy;
+        ReactiveProperty<Option<EnemyResult>> _preBattleEnemy;
+        ReactiveProperty<List<Option<EnemyResult>>> _waitingEnemyList;
 
         int _currentWaitingEnemyCount;
         
         EnemyGeneratorMono _enemyGeneratorMono;
+        EnemyObjectPool _enemyObjectPool;
         
         [Inject]
-        public BattleEnemySwitcher(EnemyGeneratorMono enemyGeneratorMono)
+        public BattleEnemySwitcher(EnemyGeneratorMono enemyGeneratorMono,EnemyObjectPool enemyObjectPool)
         {
             _enemyGeneratorMono = enemyGeneratorMono;
-            _waitingEnemyList = new List<Option<EnemyResult>>();
+            _enemyObjectPool = enemyObjectPool;
+            
+            _waitingEnemyList = new ReactiveProperty<List<Option<EnemyResult>>>();
 
             _currentWaitingEnemyCount = 1;
             GenerateWaitingEnemy(2);
@@ -31,19 +37,21 @@ namespace Model.Enemy
 
         public void SwitchToNextEnemy()
         {
+            _enemyObjectPool.AddDestroyedEnemy(_preBattleEnemy.Value);
+            _preBattleEnemy = _currentBattleEnemy;
             // 1. 現在の戦闘敵を切り替え
-            _currentBattleEnemy = _waitingEnemyList[0]; // インデックス 0 の敵を設定
-            _waitingEnemyList.RemoveAt(0); // リストから削除
+            _currentBattleEnemy = new ReactiveProperty<Option<EnemyResult>>(_waitingEnemyList.Value[0]); // インデックス 0 の敵を設定
+            _waitingEnemyList.Value.RemoveAt(0); // リストから削除
 
             // 必要な数の敵を生成
-            var generateCount = Mathf.Max(0, _currentWaitingEnemyCount - _waitingEnemyList.Count);
+            var generateCount = Mathf.Max(0, _currentWaitingEnemyCount - _waitingEnemyList.Value.Count);
             GenerateWaitingEnemy(generateCount);
 
             // 超過分の敵を削除(呼ばれることはないと思うけど)
-            for (int i = _waitingEnemyList.Count - 1; i >= _currentWaitingEnemyCount; i--)
+            for (int i = _waitingEnemyList.Value.Count - 1; i >= _currentWaitingEnemyCount; i--)
             {
                 Debug.LogError("何で呼ばれた？");
-                _waitingEnemyList.RemoveAt(i); // リストの末尾から削除
+                _waitingEnemyList.Value.RemoveAt(i); // リストの末尾から削除
             }
         }
 
@@ -58,7 +66,7 @@ namespace Model.Enemy
             {
                 var randomEnemyKind = DecideRandomEnemyKind();
                 var newEnemy = _enemyGeneratorMono.GenerateEnemy(randomEnemyKind);
-                _waitingEnemyList.Add(newEnemy);
+                _waitingEnemyList.Value.Add(newEnemy);
             }
         }
 

@@ -10,8 +10,11 @@ namespace View
     {
         [SerializeField] SpriteRenderer spriteRenderer = null!;
         [SerializeField] List<Sprite> enemyAnimationSpriteList = null!;
+        [SerializeField] Sprite defaultSprite = null!;
         [SerializeField] Sprite crySprite = null!;
         [SerializeField] Sprite confuseSprite = null!;
+        [SerializeField] Sprite happySprite = null!;
+        [SerializeField] Sprite superHappySprite = null!;
 
         public void ChangeSpriteToCry()
         {

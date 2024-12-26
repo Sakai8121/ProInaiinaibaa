@@ -5136,7 +5136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &972271292
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5263,6 +5263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 998387480}
   - component: {fileID: 998387479}
+  - component: {fileID: 998387481}
   m_Layer: 0
   m_Name: AdultDefault
   m_TagString: Untagged
@@ -5331,12 +5332,34 @@ Transform:
   m_GameObject: {fileID: 998387478}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5, y: -2.84, z: 0}
+  m_LocalPosition: {x: 3, y: -3, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &998387481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998387478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8160434965694004ab5aed60ce271e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 998387479}
+  enemyAnimationSpriteList:
+  - {fileID: 21300000, guid: 1d297643c79cd81498cc25daac76a2f7, type: 3}
+  - {fileID: 21300000, guid: 2d5dbf4995cd298478313802fd0d6250, type: 3}
+  - {fileID: 21300000, guid: 9b71449225e91d2408fc1091b84357b8, type: 3}
+  defaultSprite: {fileID: 21300000, guid: fe13514e718bce646a90610ab2e0fdb7, type: 3}
+  crySprite: {fileID: 21300000, guid: 2f8f89421ca97ab4ca0caec42048b2ae, type: 3}
+  confuseSprite: {fileID: 21300000, guid: 1b8c0bd74e97ece469b71e5ac2933be3, type: 3}
+  happySprite: {fileID: 21300000, guid: 51c2edf2e321e4e479ba2e458a34c579, type: 3}
+  superHappySprite: {fileID: 21300000, guid: d785db9747981fe489f1c8d9631cd834, type: 3}
 --- !u!1 &1009751050
 GameObject:
   m_ObjectHideFlags: 0
@@ -6641,6 +6664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1330301124}
   - component: {fileID: 1330301123}
+  - component: {fileID: 1330301125}
   m_Layer: 0
   m_Name: BabyDefault
   m_TagString: Untagged
@@ -6709,12 +6733,34 @@ Transform:
   m_GameObject: {fileID: 1330301122}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.44, y: -3.02, z: 0}
+  m_LocalPosition: {x: 6, y: -3, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1330301125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1330301122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315be16a96ba4c2ea35f5bb92ffd19e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  enemyAnimationSpriteList:
+  - {fileID: 21300000, guid: 57e6cc8baf05cb048b1a62efe624db48, type: 3}
+  - {fileID: 21300000, guid: 19ff156dd9778e943bcff099d229c357, type: 3}
+  - {fileID: 21300000, guid: 362583f133f47624e9d46085ea959187, type: 3}
+  defaultSprite: {fileID: 21300000, guid: dcf85e91ffdfcd645a19e967c0c43ee8, type: 3}
+  crySprite: {fileID: 21300000, guid: 91250f0844872e1449b270a9dbe909d6, type: 3}
+  confuseSprite: {fileID: 21300000, guid: 3c3b2061f9e2e77498d044bea0c975e8, type: 3}
+  happySprite: {fileID: 21300000, guid: 0beaadacbc5480647bfd914e2f1020dc, type: 3}
+  superHappySprite: {fileID: 21300000, guid: 6f58e1d8781ccf34e89b9c9f982dbf95, type: 3}
 --- !u!1 &1340444036
 GameObject:
   m_ObjectHideFlags: 0
@@ -9158,6 +9204,50 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1744713612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1744713614}
+  - component: {fileID: 1744713613}
+  m_Layer: 0
+  m_Name: EnemyGeneratorMono
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1744713613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744713612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab65e7966024212962d8d395ea0f9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1744713614
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744713612}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1759195404
 GameObject:
   m_ObjectHideFlags: 0
@@ -10781,3 +10871,4 @@ SceneRoots:
   - {fileID: 998387480}
   - {fileID: 134382974}
   - {fileID: 1324276065}
+  - {fileID: 1744713614}
