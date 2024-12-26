@@ -37,7 +37,7 @@ namespace Presenter
                 {
                     battleEnemy.Do(enemy =>
                     {
-                        enemy.EnemyChangeTransformView.ChangePosition(_battleEnemyPosition);
+                        enemy.ChangePosition(_battleEnemyPosition);
                     });
                 })
                 .AddTo(_disposeManager.CompositeDisposable);
@@ -47,7 +47,7 @@ namespace Presenter
                 {
                     preBattleEnemy.Do(enemy =>
                     {
-                        enemy.EnemyChangeTransformView.ChangePosition(_blownEnemyPosition);
+                        enemy.ChangePosition(_blownEnemyPosition);
                     });
                 })
                 .AddTo(_disposeManager.CompositeDisposable);
@@ -61,7 +61,7 @@ namespace Presenter
                         {
                             var generatePosition =
                                 _firstWaitingEnemyPosition + new Vector2(0.5f, 0) * waitingEnemy.index;
-                            enemy.EnemyChangeTransformView.ChangePosition(generatePosition);
+                            enemy.ChangePosition(generatePosition);
                         });
                     }
                 })

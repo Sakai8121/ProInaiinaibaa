@@ -20,12 +20,12 @@ namespace Model.Enemy
             _enemyObjectPool = enemyObjectPool;
         }
 
-        public Option<EnemyResult> GenerateEnemy(EnemyKind enemyKind)
+        public Option<EnemyView> GenerateEnemy(EnemyKind enemyKind)
         {
             switch (enemyKind)
             {
                 case EnemyKind.Adult:
-                    return _enemyAdultViewMono.Match<Option<EnemyResult>>(
+                    return _enemyAdultViewMono.Match<Option<EnemyView>>(
                         None: () =>
                         {
                             Debug.LogError("No Adult Enemy prefab available.");
@@ -35,11 +35,11 @@ namespace Model.Enemy
                         {
                             var enemy = _enemyObjectPool.GetEnemy();
 
-                            return enemy.Match<Option<EnemyResult>>(
+                            return enemy.Match<Option<EnemyView>>(
                                 None: () =>
                                 {
                                     var enemyInstance = Instantiate(enemyPrefab);
-                                    return new EnemyResult(enemyInstance, enemyInstance);
+                                    return new EnemyView(enemyInstance, enemyInstance);
                                 },
                                 Some: existingEnemy =>
                                 {
@@ -48,7 +48,7 @@ namespace Model.Enemy
                         });
 
                 case EnemyKind.Baby:
-                    return _enemyBabyViewMono.Match<Option<EnemyResult>>(
+                    return _enemyBabyViewMono.Match<Option<EnemyView>>(
                         None: () =>
                         {
                             Debug.LogError("No Adult Enemy prefab available.");
@@ -58,11 +58,11 @@ namespace Model.Enemy
                         {
                             var enemy = _enemyObjectPool.GetEnemy();
 
-                            return enemy.Match<Option<EnemyResult>>(
+                            return enemy.Match<Option<EnemyView>>(
                                 None: () =>
                                 {
                                     var enemyInstance = Instantiate(enemyPrefab);
-                                    return new EnemyResult(enemyInstance, enemyInstance);
+                                    return new EnemyView(enemyInstance, enemyInstance);
                                 },
                                 Some: existingEnemy =>
                                 {

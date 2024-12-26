@@ -10,13 +10,13 @@ namespace Model.Enemy
 {
     public class BattleEnemySwitcher
     {
-        public IReadOnlyReactiveProperty<Option<EnemyResult>> CurrentBattleEnemy => _currentBattleEnemy;
-        public IReadOnlyReactiveProperty<Option<EnemyResult>> PreBattleEnemy => _preBattleEnemy;
-        public IReadOnlyReactiveProperty<List<Option<EnemyResult>>> WaitingEnemyList => _waitingEnemyList;
+        public IReadOnlyReactiveProperty<Option<EnemyView>> CurrentBattleEnemy => _currentBattleEnemy;
+        public IReadOnlyReactiveProperty<Option<EnemyView>> PreBattleEnemy => _preBattleEnemy;
+        public IReadOnlyReactiveProperty<List<Option<EnemyView>>> WaitingEnemyList => _waitingEnemyList;
         
-        ReactiveProperty<Option<EnemyResult>> _currentBattleEnemy;
-        ReactiveProperty<Option<EnemyResult>> _preBattleEnemy;
-        ReactiveProperty<List<Option<EnemyResult>>> _waitingEnemyList;
+        ReactiveProperty<Option<EnemyView>> _currentBattleEnemy;
+        ReactiveProperty<Option<EnemyView>> _preBattleEnemy;
+        ReactiveProperty<List<Option<EnemyView>>> _waitingEnemyList;
 
         int _currentWaitingEnemyCount;
         
@@ -29,7 +29,7 @@ namespace Model.Enemy
             _enemyGeneratorMono = enemyGeneratorMono;
             _enemyObjectPool = enemyObjectPool;
             
-            _waitingEnemyList = new ReactiveProperty<List<Option<EnemyResult>>>();
+            _waitingEnemyList = new ReactiveProperty<List<Option<EnemyView>>>();
 
             _currentWaitingEnemyCount = 1;
             GenerateWaitingEnemy(2);
@@ -40,7 +40,7 @@ namespace Model.Enemy
             _enemyObjectPool.AddDestroyedEnemy(_preBattleEnemy.Value);
             _preBattleEnemy = _currentBattleEnemy;
             // 1. 現在の戦闘敵を切り替え
-            _currentBattleEnemy = new ReactiveProperty<Option<EnemyResult>>(_waitingEnemyList.Value[0]); // インデックス 0 の敵を設定
+            _currentBattleEnemy = new ReactiveProperty<Option<EnemyView>>(_waitingEnemyList.Value[0]); // インデックス 0 の敵を設定
             _waitingEnemyList.Value.RemoveAt(0); // リストから削除
 
             // 必要な数の敵を生成

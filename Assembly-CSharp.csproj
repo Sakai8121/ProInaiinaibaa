@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Assets/MyAssets/OptionScripts/Function/Validation.cs" />
     <Compile Include="Assets/MyAssets/Player/Scripts/HandViewMono.cs" />
+    <Compile Include="Assets/MyAssets/Enemy/Scripts/EnemyView.cs" />
     <Compile Include="Assets/MyAssets/Enemy/Scripts/IEnemyView.cs" />
     <Compile Include="Assets/MyAssets/Player/Scripts/PlayerStateHolder.cs" />
     <Compile Include="Assets/MyAssets/BackGroundResources/CodeRedCat/4kVectorLandscape/Demo/Scripts/SimpleParallaxScroller.cs" />
@@ -56,7 +57,6 @@
     <Compile Include="Assets/MyAssets/OptionScripts/Function/Option.cs" />
     <Compile Include="Assets/MyAssets/Enemy/Scripts/EnemyGeneratorMono.cs" />
     <Compile Include="Assets/MyAssets/Enemy/Scripts/EnemyPositionPresenter.cs" />
-    <Compile Include="Assets/MyAssets/Enemy/Scripts/EnemyResult.cs" />
     <Compile Include="Assets/MyAssets/OptionScripts/Function/OptionList.cs" />
     <Compile Include="Assets/MyAssets/OptionScripts/LinqExtension.cs" />
     <Compile Include="Assets/MyAssets/Enemy/Scripts/EnemyAdultViewMono.cs" />
