@@ -1,14 +1,13 @@
 ﻿#nullable enable
 namespace MyAssets.Enemy.Scripts
 {
+    public enum EnemyKind
+    {
+        Adult,
+        Baby
+    }
     public class EnemyResult
     {
-        public enum EnemyKind
-        {
-            Adult,
-            Baby
-        }
-        
         public IEnemyChangeTransformView EnemyChangeTransformView { get; }
         public IEnemyView EnemyView { get; }
 

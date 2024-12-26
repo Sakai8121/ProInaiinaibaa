@@ -20,11 +20,11 @@ namespace Model.Enemy
             _enemyObjectPool = enemyObjectPool;
         }
 
-        public Option<EnemyResult> GenerateEnemy(EnemyResult.EnemyKind enemyKind)
+        public Option<EnemyResult> GenerateEnemy(EnemyKind enemyKind)
         {
             switch (enemyKind)
             {
-                case EnemyResult.EnemyKind.Adult:
+                case EnemyKind.Adult:
                     return _enemyAdultViewMono.Match<Option<EnemyResult>>(
                         None: () =>
                         {
@@ -47,7 +47,7 @@ namespace Model.Enemy
                                 });
                         });
 
-                case EnemyResult.EnemyKind.Baby:
+                case EnemyKind.Baby:
                     return _enemyBabyViewMono.Match<Option<EnemyResult>>(
                         None: () =>
                         {

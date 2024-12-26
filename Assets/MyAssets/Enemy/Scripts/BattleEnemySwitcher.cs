@@ -70,15 +70,15 @@ namespace Model.Enemy
             }
         }
 
-        EnemyResult.EnemyKind DecideRandomEnemyKind()
+        EnemyKind DecideRandomEnemyKind()
         {
             var randomProbability = Random.Range(0, 100);
             const float babyAppearProbability = 70;
             
             if (randomProbability < babyAppearProbability)
-                return EnemyResult.EnemyKind.Baby;
+                return EnemyKind.Baby;
             else
-                return EnemyResult.EnemyKind.Adult;
+                return EnemyKind.Adult;
         }
     }
 }
