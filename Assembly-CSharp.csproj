@@ -45,16 +45,31 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.22f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Asset1\CodeRedCat\4kVectorLandscape\Demo\Scripts\CameraScroll.cs" />
-    <Compile Include="Assets\Scripts\General\PlaySceneLifeTimeScope.cs" />
-    <Compile Include="Assets\Scripts\Model\Player\HandStateHolder.cs" />
-    <Compile Include="Assets\Scripts\Model\Player\HiddenObjectStateHolder.cs" />
-    <Compile Include="Assets\Scripts\Presenter\HandPresenter.cs" />
-    <Compile Include="Assets\Scripts\General\DisposeManager.cs" />
-    <Compile Include="Assets\Scripts\Model\Player\PlayerStateHolder.cs" />
-    <Compile Include="Assets\Asset1\CodeRedCat\4kVectorLandscape\Demo\Scripts\SimpleParallaxScroller.cs" />
-    <Compile Include="Assets\Scripts\View\HandViewMono.cs" />
-    <Compile Include="Assets\Scripts\Model\Player\PlayerInputMono.cs" />
+    <Compile Include="Assets\MyAssets\OptionScripts\Function\Validation.cs" />
+    <Compile Include="Assets\MyAssets\Player\Scripts\HandViewMono.cs" />
+    <Compile Include="Assets\MyAssets\Player\Scripts\PlayerStateHolder.cs" />
+    <Compile Include="Assets\MyAssets\BackGroundResources\CodeRedCat\4kVectorLandscape\Demo\Scripts\SimpleParallaxScroller.cs" />
+    <Compile Include="Assets\MyAssets\OptionScripts\Function\OptionTest.cs" />
+    <Compile Include="Assets\MyAssets\Player\Scripts\HandPresenter.cs" />
+    <Compile Include="Assets\MyAssets\OptionScripts\Function\Option.cs" />
+    <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyGeneratorMono.cs" />
+    <Compile Include="Assets\MyAssets\OptionScripts\Function\OptionList.cs" />
+    <Compile Include="Assets\MyAssets\OptionScripts\LinqExtension.cs" />
+    <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyAdultViewMono.cs" />
+    <Compile Include="Assets\MyAssets\Player\Scripts\HiddenObjectStateHolder.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\EvaluationData.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\PlaySceneLifeTimeScope.cs" />
+    <Compile Include="Assets\MyAssets\Enemy\Scripts\BattleEnemySwitcher.cs" />
+    <Compile Include="Assets\MyAssets\OptionScripts\Function\OptionExtensions.cs" />
+    <Compile Include="Assets\MyAssets\OptionScripts\PermutationCalculator.cs" />
+    <Compile Include="Assets\MyAssets\BackGroundResources\CodeRedCat\4kVectorLandscape\Demo\Scripts\CameraScroll.cs" />
+    <Compile Include="Assets\MyAssets\Player\Scripts\HandStateHolder.cs" />
+    <Compile Include="Assets\MyAssets\OptionScripts\Function\Apply.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\DisposeManager.cs" />
+    <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyBabyViewMono.cs" />
+    <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyPresenter.cs" />
+    <Compile Include="Assets\MyAssets\OptionScripts\Function\Example.cs" />
+    <Compile Include="Assets\MyAssets\Player\Scripts\PlayerInputMono.cs" />
     <None Include="Library\PackageCache\com.unity.burst@1.8.12\package.json" />
     <None Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\README.txt" />
     <None Include="Library\PackageCache\com.unity.ext.nunit@1.0.6\package.json" />
@@ -761,14 +776,26 @@
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="UniTask.TextMeshPro">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\UniTask.TextMeshPro.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.DOTween">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\UniTask.DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.Addressables">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\UniTask.Addressables.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.Linq">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\UniTask.Linq.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
@@ -778,6 +805,9 @@
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask">
+      <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\UniTask.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>C:\Users\haku1\ProInaiInaiBaa\Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
