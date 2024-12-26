@@ -4,7 +4,7 @@ using UniRx;
 
 namespace General
 {
-    public class DisposeManager
+    public class DisposeManager : IDisposable
     {
         public CompositeDisposable CompositeDisposable => _compositeDisposable;
         readonly CompositeDisposable _compositeDisposable = new();
