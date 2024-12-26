@@ -1,11 +1,12 @@
 ﻿#nullable enable
 using System.Collections.Generic;
 using Model.GameSystem;
+using MyAssets.Enemy.Scripts;
 using UnityEngine;
 
 namespace View
 {
-    public class EnemyAdultViewMono: MonoBehaviour
+    public class EnemyAdultViewMono: MonoBehaviour,IEnemyView,IEnemyChangeTransformView
     {
         [SerializeField] SpriteRenderer spriteRenderer = null!;
         [SerializeField] List<Sprite> enemyAnimationSpriteList = null!;
@@ -36,6 +37,11 @@ namespace View
                     spriteRenderer.sprite = enemyAnimationSpriteList[2];
                     break;
             }
+        }
+
+        public void ChangePosition(Vector2 position)
+        {
+            transform.position = position;
         }
     }
 }
