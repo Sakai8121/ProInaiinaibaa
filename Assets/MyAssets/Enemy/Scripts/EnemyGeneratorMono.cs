@@ -9,8 +9,8 @@ namespace Model.Enemy
 {
     public class EnemyGeneratorMono : MonoBehaviour
     {
-        [SerializeField] Option<EnemyAdultViewMono> _enemyAdultViewMono;
-        [SerializeField] Option<EnemyBabyViewMono> _enemyBabyViewMono;
+        [SerializeField] Option<AbstractEnemyViewMono> _enemyAdultViewMono;
+        [SerializeField] Option<AbstractEnemyViewMono> _enemyBabyViewMono;
 
         EnemyObjectPool _enemyObjectPool = null!;
 
@@ -24,42 +24,36 @@ namespace Model.Enemy
         {
             return enemyKind switch
             {
-                EnemyKind.Adult => _enemyAdultViewMono.Match<Option<EnemyView>>(
+                EnemyKind.Adult => _enemyAdultViewMono.Match(
                     None: () =>
                     {
                         Debug.LogError("No Adult Enemy prefab available.");
                         return Function.none;
                     },
-                    Some: enemyPrefab => GenerateEnemyAdult(enemyPrefab)
+                    Some: GenerateEnemy 
                 ),
 
-                EnemyKind.Baby => _enemyBabyViewMono.Match<Option<EnemyView>>(
+                EnemyKind.Baby => _enemyBabyViewMono.Match(
                     None: () =>
                     {
                         Debug.LogError("No Baby Enemy prefab available.");
                         return Function.none;
                     },
-                    Some: enemyPrefab => GenerateEnemyBaby(enemyPrefab)
+                    Some: GenerateEnemy 
                 ),
                 _ => Function.none
             };
         }
 
 
-        EnemyView InstantiateEnemyAdultView(EnemyAdultViewMono enemyAdultViewMono)
+        EnemyView InstantiateEnemyAdultView(AbstractEnemyViewMono enemyAdultViewMono)
         {
             var enemyInstance = Instantiate(enemyAdultViewMono);
             return new EnemyView(enemyInstance, enemyInstance);
         }
 
-        EnemyView InstantiateEnemyBabyView(EnemyBabyViewMono enemyBabyViewMono)
-        {
-            var enemyInstance = Instantiate(enemyBabyViewMono);
-            return new EnemyView(enemyInstance, enemyInstance);
-        }
 
-
-        Option<EnemyView> GenerateEnemyAdult(EnemyAdultViewMono enemyAdultViewMono)
+        Option<EnemyView> GenerateEnemy(AbstractEnemyViewMono enemyAdultViewMono)
         {
             var enemy = _enemyObjectPool.GetEnemy();
 
@@ -67,19 +61,6 @@ namespace Model.Enemy
                 None: () =>
                 {
                     var enemyInstance = InstantiateEnemyAdultView(enemyAdultViewMono);
-                    return new EnemyView(enemyInstance, enemyInstance);
-                },
-                Some: existingEnemy => existingEnemy);
-        }
-
-        Option<EnemyView> GenerateEnemyBaby(EnemyBabyViewMono enemyBabyViewMono)
-        {
-            var enemy = _enemyObjectPool.GetEnemy();
-
-            return enemy.Match<Option<EnemyView>>(
-                None: () =>
-                {
-                    var enemyInstance = InstantiateEnemyBabyView(enemyBabyViewMono);
                     return new EnemyView(enemyInstance, enemyInstance);
                 },
                 Some: existingEnemy => existingEnemy);

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace View
 {
-    public class EnemyBabyViewMono : MonoBehaviour,IEnemyView,IEnemyChangeTransformView
+    public sealed class EnemyBabyViewMono : AbstractEnemyViewMono 
     {
         [SerializeField] SpriteRenderer spriteRenderer = null!;
         [SerializeField] List<Sprite> enemyAnimationSpriteList = null!;
@@ -16,17 +16,17 @@ namespace View
         [SerializeField] Sprite happySprite = null!;
         [SerializeField] Sprite superHappySprite = null!;
 
-        public void ChangeSpriteToCry()
+        public override void ChangeSpriteToCry()
         {
             spriteRenderer.sprite = crySprite;
         }
 
-        public void ChangeSpriteToConfuse()
+        public override void ChangeSpriteToConfuse()
         {
             spriteRenderer.sprite = confuseSprite;
         }
 
-        public void ChangeAnimationSprite(EvaluationData.Evaluation evaluation)
+        public override void ChangeAnimationSprite(EvaluationData.Evaluation evaluation)
         {
             switch (evaluation)
             {
@@ -42,7 +42,7 @@ namespace View
             }
         }
         
-        public void ChangePosition(Vector2 position)
+        public override void ChangePosition(Vector2 position)
         {
             transform.position = position;
         }
