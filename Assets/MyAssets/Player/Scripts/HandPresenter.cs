@@ -12,10 +12,10 @@ namespace Presenter
 {
     public class HandPresenter : IInitializable
     {
-        HandViewMono _handViewMono;
-        HandStateHolder _handStateHolder;
-        PlayerStateHolder _playerStateHolder;
-        DisposeManager _disposeManager;
+        readonly HandViewMono _handViewMono;
+        readonly HandStateHolder _handStateHolder;
+        readonly PlayerStateHolder _playerStateHolder;
+        readonly DisposeManager _disposeManager;
         
         [Inject]
         public HandPresenter(HandViewMono handViewMono, HandStateHolder handStateHolder,
@@ -47,6 +47,9 @@ namespace Presenter
                         case HandStateHolder.HandState.Close:
                             _handViewMono.MoveHandToClose();
                             break;
+                        default:
+                           Debug.LogWarning($"Invalid HandState: {state}"); 
+                            break; 
                     }
                 })
                 .AddTo(_disposeManager.CompositeDisposable);
@@ -65,6 +68,9 @@ namespace Presenter
 
                         case PlayerStateHolder.PlayerState.God:
                             _handViewMono.ChangeHandSpriteToGod();
+                            break;
+                        default:
+                            Debug.LogWarning($"Invalid PlayerState: {state}");
                             break;
                     }
                 })
