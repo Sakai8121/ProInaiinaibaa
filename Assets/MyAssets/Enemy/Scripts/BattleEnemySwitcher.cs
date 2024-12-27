@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System.Collections.Generic;
+using System.Linq;
 using MobileLibrary.Function;
 using MyAssets.Enemy.Scripts;
 using UniRx;
@@ -12,7 +13,7 @@ namespace Model.Enemy
     {
         public Option<EnemyMono> CurrentBattleEnemy { get; private set; }
         public Option<EnemyMono> DefeatedEnemy { get; private set; }
-        public List<Option<EnemyMono>> WaitingEnemyList { get; }
+        public List<Option<EnemyMono>> WaitingEnemyList { get; private set; }
 
         int _currentWaitingEnemyCount;
 
@@ -37,8 +38,8 @@ namespace Model.Enemy
             _enemyObjectPool.AddDestroyedEnemy(DefeatedEnemy);
             DefeatedEnemy = CurrentBattleEnemy;
             // 1. 現在の戦闘敵を切り替え
-            CurrentBattleEnemy = WaitingEnemyList[0]; // インデックス 0 の敵を設定
-            WaitingEnemyList.RemoveAt(0); // リストから削除
+            CurrentBattleEnemy = WaitingEnemyList.First();
+            WaitingEnemyList.RemoveAt(0);
 
             // 必要な数の敵を生成
             var generateCount = Mathf.Max(0, _currentWaitingEnemyCount - WaitingEnemyList.Count);
@@ -46,10 +47,7 @@ namespace Model.Enemy
             GenerateWaitingEnemy(generateCount);
 
             // 超過分の敵を削除(ゾーン状態が終わった後は元の数に戻る)
-            for (int i = WaitingEnemyList.Count - 1; i >= _currentWaitingEnemyCount; i--)
-            {
-                WaitingEnemyList.RemoveAt(i); // リストの末尾から削除
-            }
+            WaitingEnemyList = WaitingEnemyList.Take(_currentWaitingEnemyCount).ToList();
         }
 
         public void ChangeWaitingEnemyCount(int enemyCount)
