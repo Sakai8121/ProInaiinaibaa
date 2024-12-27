@@ -43,7 +43,7 @@ namespace Presenter
                 .AddTo(_disposeManager.CompositeDisposable);
             
             _battleEnemySwitcher
-                .ObserveEveryValueChanged(switcher => switcher.PreBattleEnemy)
+                .ObserveEveryValueChanged(switcher => switcher.DefeatedEnemy)
                 .Subscribe(enemy =>
                 {
                     enemy.Do(enemy =>

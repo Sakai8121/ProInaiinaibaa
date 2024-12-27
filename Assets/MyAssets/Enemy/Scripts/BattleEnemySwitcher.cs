@@ -11,7 +11,7 @@ namespace Model.Enemy
     public class BattleEnemySwitcher
     {
         public Option<EnemyMono> CurrentBattleEnemy { get; private set; }
-        public Option<EnemyMono> PreBattleEnemy { get; private set; }
+        public Option<EnemyMono> DefeatedEnemy { get; private set; }
         public List<Option<EnemyMono>> WaitingEnemyList { get; }
 
         int _currentWaitingEnemyCount;
@@ -34,8 +34,8 @@ namespace Model.Enemy
 
         public void SwitchToNextEnemy()
         {
-            _enemyObjectPool.AddDestroyedEnemy(PreBattleEnemy);
-            PreBattleEnemy = CurrentBattleEnemy;
+            _enemyObjectPool.AddDestroyedEnemy(DefeatedEnemy);
+            DefeatedEnemy = CurrentBattleEnemy;
             // 1. 現在の戦闘敵を切り替え
             CurrentBattleEnemy = WaitingEnemyList[0]; // インデックス 0 の敵を設定
             WaitingEnemyList.RemoveAt(0); // リストから削除
