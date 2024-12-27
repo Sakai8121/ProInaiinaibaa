@@ -8,7 +8,7 @@ namespace Model.Player
         public enum PlayerState
         {
             Default,
-            God
+            God,
         }
 
         public IReadOnlyReactiveProperty<PlayerState> CurrentPlayerState => _currentPlayerState;

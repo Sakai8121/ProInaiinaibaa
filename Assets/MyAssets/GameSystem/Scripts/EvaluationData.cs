@@ -8,7 +8,7 @@ namespace Model.GameSystem
             Normal,
             Good,
             Excellent,
-            Miss
+            Miss,
         }
     }
 }

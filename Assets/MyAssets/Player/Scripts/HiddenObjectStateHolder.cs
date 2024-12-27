@@ -1,5 +1,7 @@
 ﻿#nullable enable
+using System;
 using UniRx;
+using UnityEngine;
 
 namespace Model.Player
 {
@@ -8,7 +10,7 @@ namespace Model.Player
         public enum HiddenObject
         {
             Human,
-            Money
+            Money,
         }
 
         public IReadOnlyReactiveProperty<HiddenObject> CurrentHandState => _currentHandState;
@@ -16,10 +18,18 @@ namespace Model.Player
 
         public void SwitchHiddenObject()
         {
-            if(_currentHandState.Value == HiddenObject.Human)
-                ChangeHiddenObject(HiddenObject.Money);
-            else if(_currentHandState.Value == HiddenObject.Money)
-                ChangeHiddenObject(HiddenObject.Human);
+            switch (_currentHandState.Value)
+            {
+                case HiddenObject.Human:
+                    ChangeHiddenObject(HiddenObject.Money);
+                    break;
+                case HiddenObject.Money:
+                    ChangeHiddenObject(HiddenObject.Human);
+                    break;
+                default:
+                    Debug.LogWarning($"Invalid HiddenObject: {_currentHandState.Value}"); 
+                    break;
+            }
         }
         
         void ChangeHiddenObject(HiddenObject hiddenObject)
