@@ -60,8 +60,5 @@ namespace Model.Enemy
                 },
                 Some: existingEnemy => existingEnemy);
         }
-
-
-
     }
 }

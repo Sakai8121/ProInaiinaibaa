@@ -68,9 +68,7 @@ namespace Model.Enemy
                         var newEnemy = enemyGeneratorMono.GenerateEnemy(randomEnemyKind);
                         newEnemy.Do(enemy =>
                         {
-                            enemy.EnemyKind = randomEnemyKind;
-                            enemy.gameObject.SetActive(true);
-                            enemy.EnemyViewMono.InitSprite();
+                            enemy.Init(randomEnemyKind);
                         });
                         return newEnemy;
                     }).ToList();

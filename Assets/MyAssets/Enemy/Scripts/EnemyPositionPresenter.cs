@@ -15,7 +15,7 @@ namespace Presenter
         DisposeManager _disposeManager;
 
         readonly Vector2 _battleEnemyPosition = new Vector2(3, -3);
-        readonly Vector2 _firstWaitingEnemyPosition = new Vector2(6, -3);
+        readonly Vector2 _firstWaitingEnemyPosition = new Vector2(7, -3);
         
         [Inject]
         public EnemyPositionPresenter(BattleEnemySwitcher battleEnemySwitcher,DisposeManager disposeManager)
@@ -37,7 +37,7 @@ namespace Presenter
                 {
                     enemy.Do(enemy =>
                     {
-                        enemy.EnemyViewMono.ChangePosition(_battleEnemyPosition);
+                        enemy.EnemyViewMono.ChangePosition(_battleEnemyPosition,true);
                     });
                 })
                 .AddTo(_disposeManager.CompositeDisposable);
@@ -63,7 +63,7 @@ namespace Presenter
                         {
                             var generatePosition =
                                 _firstWaitingEnemyPosition + new Vector2(0.5f, 0) * waitingEnemy.index;
-                            enemy.EnemyViewMono.ChangePosition(generatePosition);
+                            enemy.EnemyViewMono.ChangePosition(generatePosition,true);
                         });
                     }
                 })

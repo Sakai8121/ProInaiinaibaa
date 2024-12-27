@@ -17,10 +17,11 @@ namespace View
         [SerializeField] Sprite happySprite = null!;
         [SerializeField] Sprite superHappySprite = null!;
 
-        Sequence _movePositionSequence;
+        Sequence? _movePositionSequence;
 
         public override void InitSprite()
         {
+            transform.rotation = Quaternion.identity;
             spriteRenderer.sprite = defaultSprite;
         }
         
@@ -68,15 +69,35 @@ namespace View
             }
         }
 
-        public override void ChangePosition(Vector2 position)
+        public override void ChangePosition(Vector2 position,bool requiresAnimation)
         {
-            transform.position = position;
+            if (!requiresAnimation)
+            {
+                transform.position = position;
+                return;
+            }
+            
+            if(_movePositionSequence.IsActive() && _movePositionSequence.IsPlaying())
+                _movePositionSequence.Kill();
+
+            _movePositionSequence = DOTween.Sequence()
+                .Append(transform.DOJump(position, 0.5f,3, EnemyDefaultParameter.MoveAnimationSpeed))
+                .OnKill(() => transform.position = position)
+                .SetLink(gameObject);
         }
         
         public override void Blown()
         {
-            var blownPosition = new Vector2(7, 3);
-            transform.position = blownPosition;
+            if(_movePositionSequence.IsActive() && _movePositionSequence.IsPlaying())
+                _movePositionSequence.Kill();
+
+            _movePositionSequence = DOTween.Sequence()
+                .Append(transform.DOMove
+                    (EnemyDefaultParameter.BlownPosition, EnemyDefaultParameter.BlownAnimationSpeed))
+                .Join(transform.DORotate
+                    (EnemyDefaultParameter.RotateValue, EnemyDefaultParameter.BlownAnimationSpeed))
+                .OnKill(() => transform.position = EnemyDefaultParameter.GeneratePosition)
+                .SetLink(gameObject);
         }
     }
 }
