@@ -15,7 +15,6 @@ namespace Presenter
         DisposeManager _disposeManager;
 
         readonly Vector2 _battleEnemyPosition = new Vector2(3, -3);
-        readonly Vector2 _blownEnemyPosition = new Vector2(50, 10);
         readonly Vector2 _firstWaitingEnemyPosition = new Vector2(6, -3);
         
         [Inject]
@@ -32,27 +31,30 @@ namespace Presenter
 
         void SubscribeWithCurrentBattleEnemy()
         {
-            _battleEnemySwitcher.CurrentBattleEnemy
-                .Subscribe(battleEnemy =>
+            _battleEnemySwitcher
+                .ObserveEveryValueChanged(switcher => switcher.CurrentBattleEnemy)
+                .Subscribe(enemy =>
                 {
-                    battleEnemy.Do(enemy =>
+                    enemy.Do(enemy =>
                     {
-                        enemy.ChangePosition(_battleEnemyPosition);
+                        enemy.EnemyViewMono.ChangePosition(_battleEnemyPosition);
                     });
                 })
                 .AddTo(_disposeManager.CompositeDisposable);
             
-            _battleEnemySwitcher.PreBattleEnemy
-                .Subscribe(preBattleEnemy =>
+            _battleEnemySwitcher
+                .ObserveEveryValueChanged(switcher => switcher.PreBattleEnemy)
+                .Subscribe(enemy =>
                 {
-                    preBattleEnemy.Do(enemy =>
+                    enemy.Do(enemy =>
                     {
-                        enemy.ChangePosition(_blownEnemyPosition);
+                        enemy.EnemyViewMono.Blown();
                     });
                 })
                 .AddTo(_disposeManager.CompositeDisposable);
             
-            _battleEnemySwitcher.WaitingEnemyList
+            _battleEnemySwitcher
+                .ObserveEveryValueChanged(switcher => switcher.WaitingEnemyList)
                 .Subscribe(waitingEnemyList =>
                 {
                     foreach (var waitingEnemy in waitingEnemyList.Select((enemyOption, index) => new { enemyOption, index }))
@@ -61,7 +63,7 @@ namespace Presenter
                         {
                             var generatePosition =
                                 _firstWaitingEnemyPosition + new Vector2(0.5f, 0) * waitingEnemy.index;
-                            enemy.ChangePosition(generatePosition);
+                            enemy.EnemyViewMono.ChangePosition(generatePosition);
                         });
                     }
                 })

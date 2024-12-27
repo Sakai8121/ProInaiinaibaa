@@ -17,7 +17,6 @@ namespace Model.Player
 
         public void ChangeHandState(HandState handState)
         {
-            Debug.Log($"ChangeTo {handState}");
             _currentHandState.Value = handState;
         }
     }

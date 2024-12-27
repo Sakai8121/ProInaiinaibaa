@@ -4,8 +4,8 @@ namespace MyAssets.Enemy.Scripts
 {
     public interface IEnemyView
     {
-        void ChangeSpriteToCry();
-        void ChangeSpriteToConfuse();
+        void InitSprite();
+        void ChangeSpriteByEvaluationResult(EvaluationData.Evaluation evaluation);
         void ChangeAnimationSprite(EvaluationData.Evaluation evaluation);
     }
 }

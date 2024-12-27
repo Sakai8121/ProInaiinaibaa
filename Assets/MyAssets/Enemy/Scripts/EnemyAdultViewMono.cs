@@ -16,21 +16,41 @@ namespace View
         [SerializeField] Sprite happySprite = null!;
         [SerializeField] Sprite superHappySprite = null!;
 
-        public override void ChangeSpriteToCry()
+        public override void InitSprite()
         {
-            spriteRenderer.sprite = crySprite;
+            spriteRenderer.sprite = defaultSprite;
         }
-
-        public override void ChangeSpriteToConfuse()
+        
+        public override void ChangeSpriteByEvaluationResult(EvaluationData.Evaluation evaluation)
         {
-            spriteRenderer.sprite = confuseSprite;
+            switch (evaluation)
+            {
+                case EvaluationData.Evaluation.Normal:
+                    spriteRenderer.sprite = confuseSprite;
+                    break;
+                case EvaluationData.Evaluation.Good:
+                    spriteRenderer.sprite = happySprite;
+                    break;
+                case EvaluationData.Evaluation.Excellent:
+                    spriteRenderer.sprite = superHappySprite;
+                    break;
+                case EvaluationData.Evaluation.Miss:
+                    spriteRenderer.sprite = crySprite;
+                    break;
+            }
         }
 
         public override void ChangeAnimationSprite(EvaluationData.Evaluation evaluation)
         {
+            if (enemyAnimationSpriteList.Count < 4)
+            {
+                Debug.LogError("Not Enough Sprite");
+                return;
+            }
+            
             switch (evaluation)
             {
-                case EvaluationData.Evaluation.Miss:
+                case EvaluationData.Evaluation.Normal:
                     spriteRenderer.sprite = enemyAnimationSpriteList[0];
                     break;
                 case EvaluationData.Evaluation.Good:
@@ -39,12 +59,21 @@ namespace View
                 case EvaluationData.Evaluation.Excellent:
                     spriteRenderer.sprite = enemyAnimationSpriteList[2];
                     break;
+                case EvaluationData.Evaluation.Miss:
+                    spriteRenderer.sprite = enemyAnimationSpriteList[3];
+                    break;
             }
         }
 
         public override void ChangePosition(Vector2 position)
         {
             transform.position = position;
+        }
+        
+        public override void Blown()
+        {
+            var blownPosition = new Vector2(7, 3);
+            transform.position = blownPosition;
         }
     }
 }

@@ -8,25 +8,25 @@ namespace MyAssets.Enemy.Scripts
 {
     public class EnemyObjectPool
     {
-        List<Option<EnemyView>>? _enemyViewList;
+        List<Option<EnemyMono>>? _enemyMonoList;
 
-        public void AddDestroyedEnemy(Option<EnemyView> enemyView)
+        public void AddDestroyedEnemy(Option<EnemyMono> enemyView)
         {
-            if (_enemyViewList == null)
-                _enemyViewList = new List<Option<EnemyView>>();
+            if (_enemyMonoList == null)
+                _enemyMonoList = new List<Option<EnemyMono>>();
             
-            _enemyViewList.Add(enemyView);
+            _enemyMonoList.Add(enemyView);
         }
         
-        public Option<EnemyView> GetEnemy()
+        public Option<EnemyMono> GetEnemy()
         {
-            if (_enemyViewList == null)
-                _enemyViewList = new List<Option<EnemyView>>();
+            if (_enemyMonoList == null)
+                _enemyMonoList = new List<Option<EnemyMono>>();
 
-            if (_enemyViewList.Count != 0)
+            if (_enemyMonoList.Count != 0)
             {
-                var enemy = _enemyViewList[0];
-                _enemyViewList.Remove(enemy);
+                var enemy = _enemyMonoList[0];
+                _enemyMonoList.Remove(enemy);
                 return enemy;
             }
             else

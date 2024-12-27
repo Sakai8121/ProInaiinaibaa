@@ -5,9 +5,10 @@ namespace Model.GameSystem
     {
         public enum Evaluation
         {
-            Miss,
+            Normal,
             Good,
-            Excellent
+            Excellent,
+            Miss
         }
     }
 }
