@@ -61,7 +61,6 @@ namespace Presenter
                     {
                         waitingEnemy.enemyOption.Do(enemy =>
                         {
-                            Debug.LogError("ChangePosition");
                             var generatePosition =
                                 _firstWaitingEnemyPosition + new Vector2(0.5f, 0) * waitingEnemy.index;
                             enemy.EnemyViewMono.ChangePosition(generatePosition);

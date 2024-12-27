@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System.Collections.Generic;
+using DG.Tweening;
 using Model.GameSystem;
 using MyAssets.Enemy.Scripts;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace View
         [SerializeField] Sprite confuseSprite = null!;
         [SerializeField] Sprite happySprite = null!;
         [SerializeField] Sprite superHappySprite = null!;
+
+        Sequence _movePositionSequence;
 
         public override void InitSprite()
         {

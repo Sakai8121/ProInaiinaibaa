@@ -31,7 +31,7 @@ namespace Model.Enemy
                         Debug.LogError("No Adult Enemy prefab available.");
                         return Function.none;
                     },
-                    Some: GenerateEnemy 
+                    Some: prefab => GenerateEnemy(prefab, EnemyKind.Adult)
                 ),
 
                 EnemyKind.Baby => enemyBabyMono.Match(
@@ -40,17 +40,19 @@ namespace Model.Enemy
                         Debug.LogError("No Baby Enemy prefab available.");
                         return Function.none;
                     },
-                    Some: GenerateEnemy 
+                    Some: prefab => GenerateEnemy(prefab, EnemyKind.Baby)
                 ),
                 _ => Function.none
             };
         }
 
-        Option<EnemyMono> GenerateEnemy(EnemyMono enemyMono)
+        Option<EnemyMono> GenerateEnemy(EnemyMono enemyMono,EnemyKind enemyKind)
         {
             var enemy = _enemyObjectPool.GetEnemy();
 
-            return enemy.Match<Option<EnemyMono>>(
+            return enemy
+                .Where(existingEnemy  => existingEnemy .EnemyKind == enemyKind)
+                .Match<Option<EnemyMono>>(
                 None: () =>
                 {
                     var enemyInstance = Instantiate(enemyMono);
