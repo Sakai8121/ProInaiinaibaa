@@ -33,6 +33,7 @@ namespace Model.Enemy
 
             _currentWaitingEnemyCount = 1;
             GenerateWaitingEnemy(2);
+            SwitchToNextEnemy();
         }
 
         public void SwitchToNextEnemy()
@@ -45,6 +46,7 @@ namespace Model.Enemy
 
             // 必要な数の敵を生成
             var generateCount = Mathf.Max(0, _currentWaitingEnemyCount - _waitingEnemyList.Count);
+            Debug.LogError(generateCount);
             GenerateWaitingEnemy(generateCount);
 
             // 超過分の敵を削除(ゾーン状態が終わった後は元の数に戻る)
@@ -65,6 +67,11 @@ namespace Model.Enemy
             {
                 var randomEnemyKind = DecideRandomEnemyKind();
                 var newEnemy = _enemyGeneratorMono.GenerateEnemy(randomEnemyKind);
+                newEnemy.Do(ememy =>
+                {
+                    ememy.gameObject.SetActive(true);
+                    ememy.EnemyViewMono.InitSprite();
+                });
                 _waitingEnemyList.Add(newEnemy);
             }
         }

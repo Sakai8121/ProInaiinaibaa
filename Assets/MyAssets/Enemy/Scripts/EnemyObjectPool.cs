@@ -10,12 +10,17 @@ namespace MyAssets.Enemy.Scripts
     {
         List<Option<EnemyMono>>? _enemyMonoList;
 
-        public void AddDestroyedEnemy(Option<EnemyMono> enemyView)
+        public void AddDestroyedEnemy(Option<EnemyMono> option)
         {
             if (_enemyMonoList == null)
                 _enemyMonoList = new List<Option<EnemyMono>>();
             
-            _enemyMonoList.Add(enemyView);
+            option.Do(enemy=>
+            {
+                enemy.gameObject.SetActive(false);
+                _enemyMonoList.Add(option);
+            });
+            
         }
         
         public Option<EnemyMono> GetEnemy()
@@ -25,9 +30,9 @@ namespace MyAssets.Enemy.Scripts
 
             if (_enemyMonoList.Count != 0)
             {
-                var enemy = _enemyMonoList[0];
-                _enemyMonoList.Remove(enemy);
-                return enemy;
+                var option = _enemyMonoList[0];
+                _enemyMonoList.Remove(option);
+                return option;
             }
             else
             {
