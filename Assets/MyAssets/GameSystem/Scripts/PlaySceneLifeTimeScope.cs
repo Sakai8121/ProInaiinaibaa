@@ -2,6 +2,7 @@
 using Model.Enemy;
 using Model.Player;
 using MyAssets.Enemy.Scripts;
+using MyAssets.Player.Scripts;
 using Presenter;
 using VContainer;
 using VContainer.Unity;
@@ -23,11 +24,15 @@ namespace General
             
             builder.RegisterEntryPoint<HandPresenter>();
             builder.RegisterEntryPoint<EnemyPositionPresenter>();
+            builder.RegisterEntryPoint<HiddenObjectPresenter>();
+            builder.RegisterEntryPoint<PlayerPresenter>();
             
             // MonoBehaviourの登録
             builder.RegisterComponentInHierarchy<HandViewMono>();
             builder.RegisterComponentInHierarchy<PlayerInputMono>();
             builder.RegisterComponentInHierarchy<EnemyGeneratorMono>();
+            builder.RegisterComponentInHierarchy<HiddenObjectViewMono>();
+            builder.RegisterComponentInHierarchy<PlayerViewMono>();
         }
     }
 }

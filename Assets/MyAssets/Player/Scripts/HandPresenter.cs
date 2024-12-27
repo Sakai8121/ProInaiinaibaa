@@ -35,10 +35,10 @@ namespace Presenter
 
         void SubscribeWithHandState()
         {
-            _handStateHolder.CurrentHandState
-                .Subscribe(state =>
+            _handStateHolder.ObserveEveryValueChanged(stateHolder => stateHolder.CurrentHandState)
+                .Subscribe(handState =>  
                 {
-                    switch (state)
+                    switch (handState)
                     {
                         case HandStateHolder.HandState.Open:
                             _handViewMono.MoveHandToOpen();
@@ -48,7 +48,7 @@ namespace Presenter
                             _handViewMono.MoveHandToClose();
                             break;
                         default:
-                           Debug.LogWarning($"Invalid HandState: {state}"); 
+                           Debug.LogWarning($"Invalid HandState: {handState}"); 
                             break; 
                     }
                 })
@@ -57,10 +57,10 @@ namespace Presenter
         
         void SubscribeWithPlayerState()
         {
-            _playerStateHolder.CurrentPlayerState
-                .Subscribe(state =>
-                {
-                    switch (state)
+            _playerStateHolder
+                .ObserveEveryValueChanged(stateHolder => stateHolder.CurrentPlayerState)
+                .Subscribe(playerState =>  {
+                    switch (playerState)
                     {
                         case PlayerStateHolder.PlayerState.Default:
                             _handViewMono.ChangeHandSpriteToDefault();
@@ -70,11 +70,12 @@ namespace Presenter
                             _handViewMono.ChangeHandSpriteToGod();
                             break;
                         default:
-                            Debug.LogWarning($"Invalid PlayerState: {state}");
+                            Debug.LogWarning($"Invalid PlayerState: {playerState}");
                             break;
                     }
                 })
                 .AddTo(_disposeManager.CompositeDisposable);
+               
         }
         
     }

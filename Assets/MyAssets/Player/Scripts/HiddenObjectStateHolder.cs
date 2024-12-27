@@ -13,12 +13,11 @@ namespace Model.Player
             Money,
         }
 
-        public IReadOnlyReactiveProperty<HiddenObject> CurrentHandState => _currentHandState;
-        readonly ReactiveProperty<HiddenObject> _currentHandState = new (HiddenObject.Human);
+        public HiddenObject CurrentHiddenObject { get; set; }
 
         public void SwitchHiddenObject()
         {
-            switch (_currentHandState.Value)
+            switch (CurrentHiddenObject)
             {
                 case HiddenObject.Human:
                     ChangeHiddenObject(HiddenObject.Money);
@@ -27,14 +26,14 @@ namespace Model.Player
                     ChangeHiddenObject(HiddenObject.Human);
                     break;
                 default:
-                    Debug.LogWarning($"Invalid HiddenObject: {_currentHandState.Value}"); 
+                    Debug.LogWarning($"Invalid HiddenObject: {CurrentHiddenObject}"); 
                     break;
             }
         }
         
         void ChangeHiddenObject(HiddenObject hiddenObject)
         {
-            _currentHandState.Value = hiddenObject;
+            CurrentHiddenObject = hiddenObject;
         }
     }
 }

@@ -11,12 +11,11 @@ namespace Model.Player
             God,
         }
 
-        public IReadOnlyReactiveProperty<PlayerState> CurrentPlayerState => _currentPlayerState;
-        readonly ReactiveProperty<PlayerState> _currentPlayerState = new (PlayerState.Default);
+        public PlayerState CurrentPlayerState { get; set; }
         
         public void ChangePlayerState(PlayerState playerState)
         {
-            _currentPlayerState.Value = playerState;
+            CurrentPlayerState = playerState;
         }
     }
 }

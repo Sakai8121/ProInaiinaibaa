@@ -12,12 +12,11 @@ namespace Model.Player
             Close,
         }
 
-        public IReadOnlyReactiveProperty<HandState> CurrentHandState => _currentHandState;
-        readonly ReactiveProperty<HandState> _currentHandState = new (HandState.Open);
+        public HandState CurrentHandState { get; set; }
 
         public void ChangeHandState(HandState handState)
         {
-            _currentHandState.Value = handState;
+            CurrentHandState = handState;
         }
     }
 }
