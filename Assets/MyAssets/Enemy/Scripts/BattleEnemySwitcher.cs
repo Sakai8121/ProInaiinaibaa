@@ -10,18 +10,14 @@ namespace Model.Enemy
 {
     public class BattleEnemySwitcher
     {
-        public Option<EnemyMono> CurrentBattleEnemy => _currentBattleEnemy;
-        public Option<EnemyMono> PreBattleEnemy => _preBattleEnemy;
-        public List<Option<EnemyMono>> WaitingEnemyList => _waitingEnemyList;
-        
-        Option<EnemyMono> _currentBattleEnemy;
-        Option<EnemyMono> _preBattleEnemy;
-        List<Option<EnemyMono>> _waitingEnemyList;
+        public Option<EnemyMono> CurrentBattleEnemy { get; private set; }
+        public Option<EnemyMono> PreBattleEnemy { get; private set; }
+        public List<Option<EnemyMono>> WaitingEnemyList { get; }
 
         int _currentWaitingEnemyCount;
-        
-        EnemyGeneratorMono _enemyGeneratorMono;
-        EnemyObjectPool _enemyObjectPool;
+
+        readonly EnemyGeneratorMono _enemyGeneratorMono;
+        readonly EnemyObjectPool _enemyObjectPool;
         
         [Inject]
         public BattleEnemySwitcher(EnemyGeneratorMono enemyGeneratorMono,EnemyObjectPool enemyObjectPool)
@@ -29,7 +25,7 @@ namespace Model.Enemy
             _enemyGeneratorMono = enemyGeneratorMono;
             _enemyObjectPool = enemyObjectPool;
             
-            _waitingEnemyList = new List<Option<EnemyMono>>();
+            WaitingEnemyList = new List<Option<EnemyMono>>();
 
             _currentWaitingEnemyCount = 1;
             GenerateWaitingEnemy(2);
@@ -38,21 +34,21 @@ namespace Model.Enemy
 
         public void SwitchToNextEnemy()
         {
-            _enemyObjectPool.AddDestroyedEnemy(_preBattleEnemy);
-            _preBattleEnemy = _currentBattleEnemy;
+            _enemyObjectPool.AddDestroyedEnemy(PreBattleEnemy);
+            PreBattleEnemy = CurrentBattleEnemy;
             // 1. 現在の戦闘敵を切り替え
-            _currentBattleEnemy = _waitingEnemyList[0]; // インデックス 0 の敵を設定
-            _waitingEnemyList.RemoveAt(0); // リストから削除
+            CurrentBattleEnemy = WaitingEnemyList[0]; // インデックス 0 の敵を設定
+            WaitingEnemyList.RemoveAt(0); // リストから削除
 
             // 必要な数の敵を生成
-            var generateCount = Mathf.Max(0, _currentWaitingEnemyCount - _waitingEnemyList.Count);
+            var generateCount = Mathf.Max(0, _currentWaitingEnemyCount - WaitingEnemyList.Count);
             Debug.LogError(generateCount);
             GenerateWaitingEnemy(generateCount);
 
             // 超過分の敵を削除(ゾーン状態が終わった後は元の数に戻る)
-            for (int i = _waitingEnemyList.Count - 1; i >= _currentWaitingEnemyCount; i--)
+            for (int i = WaitingEnemyList.Count - 1; i >= _currentWaitingEnemyCount; i--)
             {
-                _waitingEnemyList.RemoveAt(i); // リストの末尾から削除
+                WaitingEnemyList.RemoveAt(i); // リストの末尾から削除
             }
         }
 
@@ -72,7 +68,7 @@ namespace Model.Enemy
                     ememy.gameObject.SetActive(true);
                     ememy.EnemyViewMono.InitSprite();
                 });
-                _waitingEnemyList.Add(newEnemy);
+                WaitingEnemyList.Add(newEnemy);
             }
         }
 
