@@ -44,14 +44,14 @@ namespace Model.Enemy
 
             // 必要な数の敵を生成
             var generateCount = Mathf.Max(0, _currentWaitingEnemyCount - WaitingEnemyList.Count);
-            Debug.LogError(generateCount);
+            Debug.Log($"[BattleEnemySwitcher] Generate {generateCount} enemies");
             var enemies = GenerateWaitingEnemy(_enemyGeneratorMono, generateCount);
             WaitingEnemyList.AddRange(enemies);
 
             // 超過分の敵を削除(ゾーン状態が終わった後は元の数に戻る)
             WaitingEnemyList = WaitingEnemyList.Take(_currentWaitingEnemyCount).ToList();
         }
-
+        
         public void ChangeWaitingEnemyCount(int enemyCount)
         {
             _currentWaitingEnemyCount = Mathf.Max(1, enemyCount);
