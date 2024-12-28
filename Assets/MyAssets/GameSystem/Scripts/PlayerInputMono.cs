@@ -53,6 +53,8 @@ namespace MyAssets.GameSystem.Scripts
 
         void CheckPlayerInput()
         {
+            if (_gameStartFlagHolder.IsEndGame) return;
+            
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return))
             {
                 if (!_gameStartFlagHolder.IsStartingGame) return;

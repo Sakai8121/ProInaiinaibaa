@@ -10,6 +10,8 @@ namespace MyAssets.GameSystem.Scripts
         public int GameScore { get; set; }
         public List<EvaluationData.Evaluation> EvaluationList { get; set; } = new();
 
+        public Dictionary<Model.GameSystem.EvaluationData.Evaluation, int> EvaluationCount => _evaluationCount;
+        
         Dictionary<EvaluationData.Evaluation, int> _evaluationCount = new ()
         {
             { EvaluationData.Evaluation.Excellent, 0 },

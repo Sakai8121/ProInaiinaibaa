@@ -55,6 +55,7 @@ namespace General
             builder.RegisterComponentInHierarchy<ScoreTextViewMono>();
             builder.RegisterComponentInHierarchy<TimeTextViewMono>();
             builder.RegisterComponentInHierarchy<SoundManager>();
+            builder.RegisterComponentInHierarchy<ResultViewMono>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using Model.Player;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -12,11 +13,18 @@ namespace MyAssets.GameSystem.Scripts
         bool _isActiveTimer;
 
         TimeStateHolder _timeStateHolder;
-
+        GameStartFlagHolder _gameStartFlagHolder;
+        ResultViewMono _resultViewMono;
+        GameScoreHolder _gameScoreHolder;
+        
         [Inject]
-        public GameTimeHolder(TimeStateHolder timeStateHolder)
+        public GameTimeHolder(TimeStateHolder timeStateHolder,GameStartFlagHolder gameStartFlagHolder,
+            ResultViewMono resultViewMono,GameScoreHolder gameScoreHolder)
         {
             _timeStateHolder = timeStateHolder;
+            _gameStartFlagHolder = gameStartFlagHolder;
+            _resultViewMono = resultViewMono;
+            _gameScoreHolder = gameScoreHolder;
         }
         
         public void Tick()
@@ -26,6 +34,9 @@ namespace MyAssets.GameSystem.Scripts
                 CurrentTime += Time.deltaTime;
                 CheckCurrentTimeState();
                 CheckGameEnd();
+                
+                if(Input.GetKeyDown(KeyCode.Escape))
+                    ExecuteEndGame();
             }
         }
 
@@ -34,7 +45,7 @@ namespace MyAssets.GameSystem.Scripts
             _isActiveTimer = true;
         }
 
-        public void StopTimer()
+        void StopTimer()
         {
             _isActiveTimer = false;
         }
@@ -43,10 +54,20 @@ namespace MyAssets.GameSystem.Scripts
         {
             if (CurrentTime >= GameLimitTime)
             {
-                CurrentTime = GameLimitTime;
-                StopTimer();
                 SoundManager.Instance.PlaySEOneShot(SESoundData.SE.EndClap);
+                ExecuteEndGame();
             }
+        }
+
+        void ExecuteEndGame()
+        {
+            CurrentTime = GameLimitTime;
+            StopTimer();
+            SoundManager.Instance.StopBGM(BGMSoundData.BGM.PlayBgm);
+            SoundManager.Instance.StopBGM(BGMSoundData.BGM.ZoneBgm);
+            _gameStartFlagHolder.EndGame();
+                
+            _resultViewMono.ActiveResultUI(_gameScoreHolder.GameScore,_gameScoreHolder.EvaluationCount);
         }
 
         void CheckCurrentTimeState()
