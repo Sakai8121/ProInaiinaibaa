@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using CodeRedCat._4kVectorLandscape.Demo.Scripts;
 using Model.Enemy;
 using Model.Player;
 using MyAssets.Enemy.Scripts;
@@ -26,8 +27,7 @@ namespace General
             builder.Register<ZoneStateHolder>(Lifetime.Scoped);
             builder.Register<GameScoreHolder>(Lifetime.Scoped);
             builder.Register<TimeStateHolder>(Lifetime.Scoped);
-            //builder.Register<EvaluationTargetTimeHolder>(Lifetime.Scoped).AsImplementedInterfaces();
-            //builder.Register<EvaluationTimeCounter>(Lifetime.Scoped).AsImplementedInterfaces();
+            builder.Register<GameStartFlagHolder>(Lifetime.Scoped);
             
             builder.RegisterEntryPoint<HandPresenter>();
             builder.RegisterEntryPoint<EnemyPositionPresenter>();
@@ -47,8 +47,10 @@ namespace General
             builder.RegisterComponentInHierarchy<EnemyGeneratorMono>();
             builder.RegisterComponentInHierarchy<HiddenObjectViewMono>();
             builder.RegisterComponentInHierarchy<PlayerViewMono>();
-            builder.RegisterComponentInHierarchy<EvaluationViewMono>();
+            builder.RegisterComponentInHierarchy<EvaluationGaugeViewMono>();
             builder.RegisterComponentInHierarchy<BackGroundViewMono>();
+            builder.RegisterComponentInHierarchy<EvaluationTextViewMono>();
+            builder.RegisterComponentInHierarchy<CameraScroll>();
         }
     }
 }

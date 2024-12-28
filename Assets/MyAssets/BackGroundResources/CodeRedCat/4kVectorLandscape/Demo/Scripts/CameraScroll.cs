@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CodeRedCat._4kVectorLandscape.Demo.Scripts
@@ -17,6 +18,23 @@ namespace CodeRedCat._4kVectorLandscape.Demo.Scripts
         private Camera _camera;
         private float _zoomA;
 
+        bool _isStoppingCameraMove;
+
+        public void StopCameraMove()
+        {
+            _isStoppingCameraMove = true;
+        }
+
+        public void ReStartCameraMove()
+        {
+            _isStoppingCameraMove = false;
+        }
+
+        void Awake()
+        {
+            StopCameraMove();
+        }
+
         private void Start()
         {
             _camera = GetComponent<Camera>();
@@ -25,6 +43,9 @@ namespace CodeRedCat._4kVectorLandscape.Demo.Scripts
 
         private void Update()
         {
+            if(_isStoppingCameraMove)
+                return;
+            
             float lerpValue = 1 - Mathf.Abs(timeShiftInterVal - Time.time%timeShiftInterVal*2)/timeShiftInterVal;
             Vector2 scrollSpeed = new Vector2(Mathf.Lerp(scrollSpeedA.x, scrollSpeedB.x, lerpValue), Mathf.Lerp(scrollSpeedA.y, scrollSpeedB.y, lerpValue));
             

@@ -41,13 +41,13 @@ namespace MyAssets.GameSystem.Scripts
         void CheckCurrentTimeState()
         {
             var currentTimeRate = CurrentTime / GameLimitTime;
-            if (currentTimeRate > 0.33f)
-            {
-                _timeStateHolder.ChangeTimeState(TimeState.Morning);
-            }
-            else if (currentTimeRate > 0.66f)
+            if (currentTimeRate > 0.66f)
             {
                 _timeStateHolder.ChangeTimeState(TimeState.Night);
+            }
+            else if (currentTimeRate > 0.33f)
+            {
+                _timeStateHolder.ChangeTimeState(TimeState.Morning);
             }
             else
             {

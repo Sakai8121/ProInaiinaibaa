@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace MyAssets.GameSystem.Scripts
 {
-    public class EvaluationViewMono:MonoBehaviour
+    public class EvaluationGaugeViewMono:MonoBehaviour
     {
         [SerializeField] Image evaluationGaugeImage = null!;
         [SerializeField] Sprite defaultGaugeSprite = null!;

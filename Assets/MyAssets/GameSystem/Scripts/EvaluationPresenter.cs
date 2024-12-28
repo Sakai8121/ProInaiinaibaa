@@ -10,7 +10,7 @@ namespace MyAssets.GameSystem.Scripts
 {
     public class EvaluationPresenter : IInitializable
     {
-        EvaluationViewMono _evaluationViewMono;
+        EvaluationGaugeViewMono _evaluationGaugeViewMono;
         EvaluationTimeCounter _evaluationTimeCounter;
         EvaluationTargetTimeHolder _evaluationTargetTimeHolder;
         DisposeManager _disposeManager;
@@ -20,12 +20,12 @@ namespace MyAssets.GameSystem.Scripts
         HandStateHolder _handStateHolder;
         
         [Inject]
-        public EvaluationPresenter(EvaluationViewMono evaluationViewMono, EvaluationTimeCounter evaluationTimeCounter,
+        public EvaluationPresenter(EvaluationGaugeViewMono evaluationGaugeViewMono, EvaluationTimeCounter evaluationTimeCounter,
             EvaluationTargetTimeHolder evaluationTargetTimeHolder,DisposeManager disposeManager,
             ZoneStateHolder zoneStateHolder,BattleEnemySwitcher battleEnemySwitcher,
             EvaluationDecider evaluationDecider,HandStateHolder handStateHolder)
         {
-            _evaluationViewMono = evaluationViewMono;
+            _evaluationGaugeViewMono = evaluationGaugeViewMono;
             _evaluationTimeCounter = evaluationTimeCounter;
             _evaluationTargetTimeHolder = evaluationTargetTimeHolder;
             _disposeManager = disposeManager;
@@ -48,15 +48,15 @@ namespace MyAssets.GameSystem.Scripts
                 {
                     var currentTargetTime = _evaluationTargetTimeHolder.CurrentTargetTime;
                     var gaugeRate = currentTimer / currentTargetTime;
-                    _evaluationViewMono.ChangeGaugeView(gaugeRate);
+                    _evaluationGaugeViewMono.ChangeGaugeView(gaugeRate);
                     
                     if (_zoneStateHolder.IsZoneState())
                     {
-                        _evaluationViewMono.ChangeGaugeToInZone();
+                        _evaluationGaugeViewMono.ChangeGaugeToInZone();
                     }
                     else
                     {
-                        _evaluationViewMono.ChangeGaugeToDefault();
+                        _evaluationGaugeViewMono.ChangeGaugeToDefault();
                     }
                     
                     CheckEvaluationForEnemySprite();

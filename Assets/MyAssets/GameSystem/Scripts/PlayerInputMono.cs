@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using CodeRedCat._4kVectorLandscape.Demo.Scripts;
 using Model.Enemy;
 using Model.Player;
 using UnityEngine;
@@ -15,12 +16,18 @@ namespace MyAssets.GameSystem.Scripts
         EvaluationTimeCounter _evaluationTimeCounter = null!;
         EvaluationTargetTimeHolder _evaluationTargetTimeHolder = null!;
         GameScoreHolder _gameScoreHolder = null!;
+        GameStartFlagHolder _gameStartFlagHolder = null!;
+        GameTimeHolder _gameTimeHolder = null!;
+        EvaluationTextViewMono _evaluationTextViewMono = null!;
+        CameraScroll _cameraScroll = null!;
         
         [Inject]
         public void Construct(HandStateHolder handStateHolder,HiddenObjectStateHolder hiddenObjectStateHolder,
             BattleEnemySwitcher battleEnemySwitcher,EvaluationDecider evaluationDecider,
             EvaluationTimeCounter evaluationTimeCounter,EvaluationTargetTimeHolder evaluationTargetTimeHolder,
-            GameScoreHolder gameScoreHolder)
+            GameScoreHolder gameScoreHolder,GameStartFlagHolder gameStartFlagHolder,
+            GameTimeHolder gameTimeHolder,EvaluationTextViewMono evaluationTextViewMono,
+            CameraScroll cameraScroll)
         {
             _handStateHolder = handStateHolder;
             _hiddenObjectStateHolder = hiddenObjectStateHolder;
@@ -29,6 +36,10 @@ namespace MyAssets.GameSystem.Scripts
             _evaluationTimeCounter = evaluationTimeCounter;
             _evaluationTargetTimeHolder = evaluationTargetTimeHolder;
             _gameScoreHolder = gameScoreHolder;
+            _gameStartFlagHolder = gameStartFlagHolder;
+            _gameTimeHolder = gameTimeHolder;
+            _evaluationTextViewMono = evaluationTextViewMono;
+            _cameraScroll = cameraScroll;
         }
         
         void Update()
@@ -40,12 +51,22 @@ namespace MyAssets.GameSystem.Scripts
         {
             if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return))
             {
+                if (!_gameStartFlagHolder.IsStartingGame) return;
+                
                 _handStateHolder.ChangeHandState(HandStateHolder.HandState.Close);
                 _evaluationTimeCounter.RestartCount();
             }
             
             if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return))
             {
+                if (!_gameStartFlagHolder.IsStartingGame)
+                {
+                    _gameStartFlagHolder.StartGame();
+                    _gameTimeHolder.RestartTimer();
+                    _cameraScroll.ReStartCameraMove();
+                    return;
+                }
+                
                 _handStateHolder.ChangeHandState(HandStateHolder.HandState.Open);
                 _evaluationTimeCounter.StopCount();
                 
@@ -67,6 +88,7 @@ namespace MyAssets.GameSystem.Scripts
             {
                 enemy.EnemyViewMono.ChangeSpriteByEvaluationResult(evaluation);
                 _gameScoreHolder.AddScore(evaluation);
+                _evaluationTextViewMono.ActiveEvaluationText(evaluation);
             });
         }
 
