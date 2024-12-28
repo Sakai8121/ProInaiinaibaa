@@ -55,6 +55,7 @@
     <Compile Include="Assets\MyAssets\Player\Scripts\PlayerStateHolder.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\HiddenObjectPresenter.cs" />
     <Compile Include="Assets\MyAssets\BackGroundResources\CodeRedCat\4kVectorLandscape\Demo\Scripts\SimpleParallaxScroller.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\SoundManager.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyObjectPool.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\PlayerViewMono.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\Function\OptionTest.cs" />
