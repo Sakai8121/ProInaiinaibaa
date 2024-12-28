@@ -46,15 +46,17 @@ namespace MyAssets.GameSystem.Scripts
                 .ObserveEveryValueChanged(timeCounter => timeCounter.CurrentTimer)
                 .Subscribe(currentTimer =>
                 {
+                    var currentTargetTime = _evaluationTargetTimeHolder.CurrentTargetTime;
+                    var gaugeRate = currentTimer / currentTargetTime;
+                    _evaluationViewMono.ChangeGaugeView(gaugeRate);
+                    
                     if (_zoneStateHolder.IsZoneState())
                     {
-                        _evaluationViewMono.ChangeGaugeView(1.0f);
+                        _evaluationViewMono.ChangeGaugeToInZone();
                     }
                     else
                     {
-                        var currentTargetTime = _evaluationTargetTimeHolder.CurrentTargetTime;
-                        var gaugeRate = currentTimer / currentTargetTime;
-                        _evaluationViewMono.ChangeGaugeView(gaugeRate);
+                        _evaluationViewMono.ChangeGaugeToDefault();
                     }
                     
                     CheckEvaluationForEnemySprite();
