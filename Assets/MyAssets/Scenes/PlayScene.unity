@@ -1944,7 +1944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b07dae429332c4389f6edf9502a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: {x: 0.7, y: 0.7}
+  parallaxSpeed: {x: 0.8, y: 0.8}
   autoScrollSpeed: {x: 0, y: 0}
   imageOverlap: 0.01
   oneImage: 0
@@ -4692,7 +4692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b07dae429332c4389f6edf9502a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: {x: 0.7, y: 0.7}
+  parallaxSpeed: {x: 0.8, y: 0.8}
   autoScrollSpeed: {x: 0, y: 0}
   imageOverlap: 0.01
   oneImage: 0
@@ -4923,7 +4923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b07dae429332c4389f6edf9502a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: {x: 0.5, y: 0.5}
+  parallaxSpeed: {x: 0.4, y: 0.4}
   autoScrollSpeed: {x: 0, y: 0}
   imageOverlap: 0.01
   oneImage: 0
@@ -5021,7 +5021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b07dae429332c4389f6edf9502a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: {x: 0.5, y: 0.5}
+  parallaxSpeed: {x: 0.4, y: 0.4}
   autoScrollSpeed: {x: 0, y: 0}
   imageOverlap: 0.01
   oneImage: 0
@@ -6784,7 +6784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b07dae429332c4389f6edf9502a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: {x: 0.7, y: 0.7}
+  parallaxSpeed: {x: 0.8, y: 0.8}
   autoScrollSpeed: {x: 0, y: 0}
   imageOverlap: 0.01
   oneImage: 0
@@ -7434,7 +7434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b07dae429332c4389f6edf9502a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: {x: 0.5, y: 0.5}
+  parallaxSpeed: {x: 0.4, y: 0.4}
   autoScrollSpeed: {x: 0, y: 0}
   imageOverlap: 0.005
   oneImage: 0
@@ -7483,7 +7483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b07dae429332c4389f6edf9502a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: {x: 0.7, y: 0.7}
+  parallaxSpeed: {x: 0.8, y: 0.8}
   autoScrollSpeed: {x: 0, y: 0}
   imageOverlap: 0.005
   oneImage: 0
@@ -7616,7 +7616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26b07dae429332c4389f6edf9502a804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxSpeed: {x: 0.5, y: 0.5}
+  parallaxSpeed: {x: 0.4, y: 0.4}
   autoScrollSpeed: {x: 0, y: 0}
   imageOverlap: 0.01
   oneImage: 0
@@ -8656,7 +8656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1687619774}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemyParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9312,7 +9312,7 @@ MonoBehaviour:
     value: {fileID: 1111572160701434539, guid: d7325bddf008a55468bb699c6481551c, type: 3}
   enemyBabyMono:
     value: {fileID: 1333620800718086843, guid: 5c76c75bf9e060c40ab67dc255864925, type: 3}
-  enemyParent: {fileID: 0}
+  enemyParent: {fileID: 1687619774}
 --- !u!4 &1744713614
 Transform:
   m_ObjectHideFlags: 0

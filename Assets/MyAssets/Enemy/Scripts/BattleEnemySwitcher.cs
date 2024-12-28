@@ -50,7 +50,7 @@ namespace Model.Enemy
             //Debug.Log($"[BattleEnemySwitcher] Generate {enemies.Count} Count");
 
             // 超過分の敵を削除(ゾーン状態が終わった後は元の数に戻る)
-            WaitingEnemyList = WaitingEnemyList.Take(_currentWaitingEnemyCount).ToList();
+            WaitingEnemyList = TakeRequiredCountEnemies(WaitingEnemyList);
 
             ChangeSpriteOrder();
         }
@@ -72,6 +72,28 @@ namespace Model.Enemy
                 enemyOption.Do(enemy=>
                     enemy.EnemyViewMono.ChangeSpriteOrder(index*(-1)));
             }
+        }
+
+        List<Option<EnemyMono>> TakeRequiredCountEnemies(List<Option<EnemyMono>> waitingEnemyList)
+        {
+            // 取得した要素
+            var takenEnemies = waitingEnemyList.Take(_currentWaitingEnemyCount).ToList();
+
+            // 取得しなかった要素
+            var skippedEnemies = waitingEnemyList.Skip(_currentWaitingEnemyCount).ToList();
+
+            // 取得しなかった要素に対する処理
+            foreach (var enemy in skippedEnemies)
+            {
+                // ここに処理を記述
+                enemy.Do(enemyMono=>
+                {
+                    enemyMono.EnemyViewMono.ChangePosition(EnemyDefaultParameter.GeneratePosition,false);
+                    _enemyObjectPool.AddDestroyedEnemy(enemy);
+                });
+            }
+
+            return takenEnemies;
         }
 
         static List<Option<EnemyMono>> GenerateWaitingEnemy(EnemyGeneratorMono enemyGeneratorMono, int generateWaitingEnemyCount)

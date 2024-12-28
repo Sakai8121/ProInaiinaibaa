@@ -802,6 +802,14 @@
       <Project>{1a62eafe-7715-597f-ab3e-35f7bdf23d14}</Project>
       <Name>Unity.2D.Tilemap.Extras.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="ToonyColorsPro.Demo.Editor.csproj">
+      <Project>{43754581-e7e7-ac8d-ca28-f3b0e4a5fbde}</Project>
+      <Name>ToonyColorsPro.Demo.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXRRuntime.csproj">
+      <Project>{0e478e52-2826-6fe7-2cd4-e5e2cc1c32f1}</Project>
+      <Name>CFXRRuntime</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Collections.csproj">
       <Project>{9e00055e-8f4c-bcd2-0547-cd73cfa53cc3}</Project>
       <Name>Unity.Collections</Name>
@@ -813,6 +821,10 @@
     <ProjectReference Include="Unity.2D.SpriteShape.Runtime.csproj">
       <Project>{ceea20a8-67f9-b612-b646-2a9ebf2bfef0}</Project>
       <Name>Unity.2D.SpriteShape.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXRDemo.csproj">
+      <Project>{e40b6cd0-1d76-b9ce-7169-dadfd35fcf76}</Project>
+      <Name>CFXRDemo</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.PixelPerfect.csproj">
       <Project>{efdc20d8-c2e1-9fd9-2994-24d89749efd6}</Project>
@@ -830,6 +842,10 @@
       <Project>{f18760fb-7e07-8821-3bcb-0a23ca866db0}</Project>
       <Name>PsdPlugin</Name>
     </ProjectReference>
+    <ProjectReference Include="CFXR.WelcomeScreen.csproj">
+      <Project>{e458d012-87bd-6b2c-3c43-16f29d0ac1ae}</Project>
+      <Name>CFXR.WelcomeScreen</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Burst.csproj">
       <Project>{ed74d2d5-76b3-e10d-6f93-5023aab2b4fa}</Project>
       <Name>Unity.Burst</Name>
@@ -841,6 +857,10 @@
     <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj">
       <Project>{2ef9f41f-bfa6-dec4-26e7-e0a260ebff03}</Project>
       <Name>Unity.VisualScripting.Shared.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="KinoBloom.Runtime.csproj">
+      <Project>{10d6bfcb-cda2-639d-a8cf-7540ed584286}</Project>
+      <Name>KinoBloom.Runtime</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualStudio.Editor.csproj">
       <Project>{c52f786d-3e4f-01f6-8d7b-dd4361cec18e}</Project>
@@ -889,6 +909,10 @@
     <ProjectReference Include="Unity.InternalAPIEditorBridge.001.csproj">
       <Project>{f67c5d1a-75d9-defb-d124-887bc65ea2a2}</Project>
       <Name>Unity.InternalAPIEditorBridge.001</Name>
+    </ProjectReference>
+    <ProjectReference Include="CFXREditor.csproj">
+      <Project>{ce3b1e6b-5d49-b526-6cf6-0fe7a64ed3e3}</Project>
+      <Name>CFXREditor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.2D.Psdimporter.Editor.csproj">
       <Project>{140fd303-d57d-f3e2-b38b-6690c388bab3}</Project>
