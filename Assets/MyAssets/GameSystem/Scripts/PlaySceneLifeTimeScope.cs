@@ -36,6 +36,7 @@ namespace General
             builder.RegisterEntryPoint<EvaluationPresenter>();
             builder.RegisterEntryPoint<ZoneStateObserver>();
             builder.RegisterEntryPoint<TimeStatePresenter>();
+            builder.RegisterEntryPoint<TimeAndScorePresenter>();
             builder.RegisterEntryPoint<EvaluationTargetTimeHolder>().AsSelf();
             builder.RegisterEntryPoint<EvaluationTimeCounter>().AsSelf();
             builder.RegisterEntryPoint<JudgeZoneExecutor>().AsSelf();
@@ -51,6 +52,8 @@ namespace General
             builder.RegisterComponentInHierarchy<BackGroundViewMono>();
             builder.RegisterComponentInHierarchy<EvaluationTextViewMono>();
             builder.RegisterComponentInHierarchy<CameraScroll>();
+            builder.RegisterComponentInHierarchy<ScoreTextViewMono>();
+            builder.RegisterComponentInHierarchy<TimeTextViewMono>();
         }
     }
 }

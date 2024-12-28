@@ -7,8 +7,8 @@ namespace MyAssets.GameSystem.Scripts
 {
     public class GameTimeHolder:ITickable
     {
-        public readonly float GameLimitTime = 60;
-        float CurrentTime { get; set; }
+        public readonly int GameLimitTime = 60;
+        public float CurrentTime { get; set; }
         bool _isActiveTimer;
 
         TimeStateHolder _timeStateHolder;
