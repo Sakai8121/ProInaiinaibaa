@@ -66,6 +66,9 @@ namespace MyAssets.GameSystem.Scripts
             _cancellationTokenSource = new CancellationTokenSource();
             _disposeManager.CompositeDisposable.Add(_cancellationTokenSource);
             WaitInZoneTimeUniTask(_cancellationTokenSource);
+            
+            SoundManager.Instance.PlaySEOneShot(SESoundData.SE.GoInZone);
+            SoundManager.Instance.PlayBGM(BGMSoundData.BGM.ZoneBgm);
         }
 
         void ExecuteActionOnNotZone()
@@ -75,6 +78,9 @@ namespace MyAssets.GameSystem.Scripts
             _battleEnemySwitcher.ChangeWaitingEnemyCount(1);
             _backGroundViewMono.RevertCurrentBackGround();
             _cameraScroll.ReStartCameraMove();
+            
+            SoundManager.Instance?.PlaySEOneShot(SESoundData.SE.GoEndZone);
+            SoundManager.Instance?.PlayBGM(BGMSoundData.BGM.PlayBgm);
         }
 
         async void WaitInZoneTimeUniTask(CancellationTokenSource cancellationTokenSource)

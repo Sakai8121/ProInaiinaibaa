@@ -18,7 +18,7 @@ namespace MyAssets.GameSystem.Scripts
         public float bgmMasterVolume = 1;
         public float seMasterVolume = 1;
 
-        public static SoundManager Instance { get; private set; }
+        public static SoundManager? Instance { get; private set; }
 
         private void Awake()
         {

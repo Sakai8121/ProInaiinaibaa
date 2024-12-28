@@ -1,7 +1,9 @@
 ﻿#nullable enable
 using CodeRedCat._4kVectorLandscape.Demo.Scripts;
 using Model.Enemy;
+using Model.GameSystem;
 using Model.Player;
+using MyAssets.Enemy.Scripts;
 using UnityEngine;
 using VContainer;
 
@@ -20,6 +22,7 @@ namespace MyAssets.GameSystem.Scripts
         GameTimeHolder _gameTimeHolder = null!;
         EvaluationTextViewMono _evaluationTextViewMono = null!;
         CameraScroll _cameraScroll = null!;
+        PlayerStateHolder _playerStateHolder;
         
         [Inject]
         public void Construct(HandStateHolder handStateHolder,HiddenObjectStateHolder hiddenObjectStateHolder,
@@ -27,7 +30,7 @@ namespace MyAssets.GameSystem.Scripts
             EvaluationTimeCounter evaluationTimeCounter,EvaluationTargetTimeHolder evaluationTargetTimeHolder,
             GameScoreHolder gameScoreHolder,GameStartFlagHolder gameStartFlagHolder,
             GameTimeHolder gameTimeHolder,EvaluationTextViewMono evaluationTextViewMono,
-            CameraScroll cameraScroll)
+            CameraScroll cameraScroll,PlayerStateHolder playerStateHolder)
         {
             _handStateHolder = handStateHolder;
             _hiddenObjectStateHolder = hiddenObjectStateHolder;
@@ -40,6 +43,7 @@ namespace MyAssets.GameSystem.Scripts
             _gameTimeHolder = gameTimeHolder;
             _evaluationTextViewMono = evaluationTextViewMono;
             _cameraScroll = cameraScroll;
+            _playerStateHolder = playerStateHolder;
         }
         
         void Update()
@@ -55,6 +59,17 @@ namespace MyAssets.GameSystem.Scripts
                 
                 _handStateHolder.ChangeHandState(HandStateHolder.HandState.Close);
                 _evaluationTimeCounter.RestartCount();
+                
+                //音
+                switch (_playerStateHolder.CurrentPlayerState)
+                {
+                    case PlayerStateHolder.PlayerState.Default:
+                        SoundManager.Instance.PlaySEOneShot(SESoundData.SE.CloseHandDefault);
+                        break;
+                    case PlayerStateHolder.PlayerState.God:
+                        SoundManager.Instance.PlaySEOneShot(SESoundData.SE.CloseHandInZone);
+                        break;
+                }
             }
             
             if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return))
@@ -64,6 +79,7 @@ namespace MyAssets.GameSystem.Scripts
                     _gameStartFlagHolder.StartGame();
                     _gameTimeHolder.RestartTimer();
                     _cameraScroll.ReStartCameraMove();
+                    SoundManager.Instance.PlayBGM(BGMSoundData.BGM.PlayBgm);
                     return;
                 }
                 
@@ -73,6 +89,17 @@ namespace MyAssets.GameSystem.Scripts
                 //タイミングの評価を行った後、バトルする敵を変える。
                 DecideEvaluation();
                 ChangeBattleEnemy();
+                
+                //音
+                switch (_playerStateHolder.CurrentPlayerState)
+                {
+                    case PlayerStateHolder.PlayerState.Default:
+                        SoundManager.Instance.PlaySEOneShot(SESoundData.SE.OpenHandDefault);
+                        break;
+                    case PlayerStateHolder.PlayerState.God:
+                        SoundManager.Instance.PlaySEOneShot(SESoundData.SE.OpenHandInZone);
+                        break;
+                }
             }
             
             if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
@@ -89,6 +116,7 @@ namespace MyAssets.GameSystem.Scripts
                 enemy.EnemyViewMono.ChangeSpriteByEvaluationResult(evaluation);
                 _gameScoreHolder.AddScore(evaluation);
                 _evaluationTextViewMono.ActiveEvaluationText(evaluation);
+                EvaluationSound(evaluation);
             });
         }
 
@@ -97,6 +125,49 @@ namespace MyAssets.GameSystem.Scripts
             _evaluationTargetTimeHolder.ChangeCurrentTargetTimeRandomly();
             _battleEnemySwitcher.SwitchToNextEnemy();
             _evaluationTimeCounter.ResetTime();
+        }
+
+        void EvaluationSound(EvaluationData.Evaluation evaluation)
+        {
+            switch (evaluation)
+            {
+                case EvaluationData.Evaluation.Excellent:
+                    _battleEnemySwitcher.CurrentBattleEnemy.Do(enemy =>
+                    {
+                        if(enemy.EnemyKind == EnemyKind.Adult)
+                            SoundManager.Instance.PlaySEOneShot(SESoundData.SE.AdultExcellent);
+                        else  if(enemy.EnemyKind == EnemyKind.Baby)
+                            SoundManager.Instance.PlaySEOneShot(SESoundData.SE.BabyExcellent);
+                    });
+                    break;
+                case EvaluationData.Evaluation.Good:
+                    _battleEnemySwitcher.CurrentBattleEnemy.Do(enemy =>
+                    {
+                        if(enemy.EnemyKind == EnemyKind.Adult)
+                            SoundManager.Instance.PlaySEOneShot(SESoundData.SE.AdultGood);
+                        else  if(enemy.EnemyKind == EnemyKind.Baby)
+                            SoundManager.Instance.PlaySEOneShot(SESoundData.SE.BabyGood);
+                    });
+                    break;
+                case EvaluationData.Evaluation.Miss:
+                    _battleEnemySwitcher.CurrentBattleEnemy.Do(enemy =>
+                    {
+                        if(enemy.EnemyKind == EnemyKind.Adult)
+                            SoundManager.Instance.PlaySEOneShot(SESoundData.SE.AdultMiss);
+                        else  if(enemy.EnemyKind == EnemyKind.Baby)
+                            SoundManager.Instance.PlaySEOneShot(SESoundData.SE.BabyMiss);
+                    });
+                    break;
+                case EvaluationData.Evaluation.Normal:
+                    _battleEnemySwitcher.CurrentBattleEnemy.Do(enemy =>
+                    {
+                        if(enemy.EnemyKind == EnemyKind.Adult)
+                            SoundManager.Instance.PlaySEOneShot(SESoundData.SE.AdultBad);
+                        else  if(enemy.EnemyKind == EnemyKind.Baby)
+                            SoundManager.Instance.PlaySEOneShot(SESoundData.SE.BabyBad);
+                    });
+                    break;
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ namespace MyAssets.GameSystem.Scripts
             {
                 CurrentTime += Time.deltaTime;
                 CheckCurrentTimeState();
+                CheckGameEnd();
             }
         }
 
@@ -36,6 +37,16 @@ namespace MyAssets.GameSystem.Scripts
         public void StopTimer()
         {
             _isActiveTimer = false;
+        }
+
+        void CheckGameEnd()
+        {
+            if (CurrentTime >= GameLimitTime)
+            {
+                CurrentTime = GameLimitTime;
+                StopTimer();
+                SoundManager.Instance.PlaySEOneShot(SESoundData.SE.EndClap);
+            }
         }
 
         void CheckCurrentTimeState()
