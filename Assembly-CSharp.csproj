@@ -61,7 +61,9 @@
     <Compile Include="Assets\MyAssets\Player\Scripts\HandPresenter.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\Function\Option.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyGeneratorMono.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\BackGroundViewMono.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyPositionPresenter.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\TimeState.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\Function\OptionList.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\LinqExtension.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyAdultViewMono.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\EvaluationTargetTimeHolder.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\PlaySceneLifeTimeScope.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\BattleEnemySwitcher.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\GameTimeHolder.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\HiddenObjectViewMono.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyKind.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\Function\OptionExtensions.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Assets\MyAssets\Enemy\Scripts\IEnemyChangeTransformView.cs" />
     <Compile Include="Assets\MyAssets\BackGroundResources\CodeRedCat\4kVectorLandscape\Demo\Scripts\CameraScroll.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\PlayerPresenter.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\TimeStateHolder.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\ZoneStateObserver.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\HandStateHolder.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\Function\Apply.cs" />
@@ -89,6 +93,7 @@
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\PlayerInputMono.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\Function\Example.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\EvaluationPresenter.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\TimeStatePresenter.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\EvaluationDecider.cs" />
     <None Include="Library\PackageCache\com.unity.burst@1.8.12\package.json" />
     <None Include="Library\PackageCache\com.unity.collections@1.2.4\Unity.Collections.LowLevel.ILSupport\README.txt" />

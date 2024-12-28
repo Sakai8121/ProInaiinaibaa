@@ -25,6 +25,7 @@ namespace General
             builder.Register<EvaluationDecider>(Lifetime.Scoped);
             builder.Register<ZoneStateHolder>(Lifetime.Scoped);
             builder.Register<GameScoreHolder>(Lifetime.Scoped);
+            builder.Register<TimeStateHolder>(Lifetime.Scoped);
             //builder.Register<EvaluationTargetTimeHolder>(Lifetime.Scoped).AsImplementedInterfaces();
             //builder.Register<EvaluationTimeCounter>(Lifetime.Scoped).AsImplementedInterfaces();
             
@@ -34,9 +35,11 @@ namespace General
             builder.RegisterEntryPoint<PlayerPresenter>();
             builder.RegisterEntryPoint<EvaluationPresenter>();
             builder.RegisterEntryPoint<ZoneStateObserver>();
+            builder.RegisterEntryPoint<TimeStatePresenter>();
             builder.RegisterEntryPoint<EvaluationTargetTimeHolder>().AsSelf();
             builder.RegisterEntryPoint<EvaluationTimeCounter>().AsSelf();
             builder.RegisterEntryPoint<JudgeZoneExecutor>().AsSelf();
+            builder.RegisterEntryPoint<GameTimeHolder>().AsSelf();
             
             // MonoBehaviourの登録
             builder.RegisterComponentInHierarchy<HandViewMono>();
@@ -45,6 +48,7 @@ namespace General
             builder.RegisterComponentInHierarchy<HiddenObjectViewMono>();
             builder.RegisterComponentInHierarchy<PlayerViewMono>();
             builder.RegisterComponentInHierarchy<EvaluationViewMono>();
+            builder.RegisterComponentInHierarchy<BackGroundViewMono>();
         }
     }
 }

@@ -12,13 +12,16 @@ namespace MyAssets.GameSystem.Scripts
     {
         PlayerStateHolder _playerStateHolder;
         BattleEnemySwitcher _battleEnemySwitcher;
+        BackGroundViewMono _backGroundViewMono;
         
         [Inject]
         public ZoneStateObserver(ZoneStateHolder zoneStateHolder,PlayerStateHolder playerStateHolder,
-            BattleEnemySwitcher battleEnemySwitcher,DisposeManager disposeManager)
+            BattleEnemySwitcher battleEnemySwitcher,DisposeManager disposeManager,
+            BackGroundViewMono backGroundViewMono)
         {
             _playerStateHolder = playerStateHolder;
             _battleEnemySwitcher = battleEnemySwitcher;
+            _backGroundViewMono = backGroundViewMono;
             
             zoneStateHolder.ObserveEveryValueChanged(holder => holder.CurrentZoneState)
                 .Subscribe(currentZoneState =>
@@ -43,12 +46,14 @@ namespace MyAssets.GameSystem.Scripts
         {
             _playerStateHolder.ChangePlayerState(PlayerStateHolder.PlayerState.God);
             _battleEnemySwitcher.ChangeWaitingEnemyCount(3);
+            _backGroundViewMono.ChangeToZoneBackGround();
         }
 
         void ExecuteActionOnNotZone()
         {
             _playerStateHolder.ChangePlayerState(PlayerStateHolder.PlayerState.Default);
             _battleEnemySwitcher.ChangeWaitingEnemyCount(1);
+            _backGroundViewMono.RevertCurrentBackGround();
         }
     }
 }
