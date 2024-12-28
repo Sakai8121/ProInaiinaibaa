@@ -51,11 +51,27 @@ namespace Model.Enemy
 
             // 超過分の敵を削除(ゾーン状態が終わった後は元の数に戻る)
             WaitingEnemyList = WaitingEnemyList.Take(_currentWaitingEnemyCount).ToList();
+
+            ChangeSpriteOrder();
         }
         
         public void ChangeWaitingEnemyCount(int enemyCount)
         {
             _currentWaitingEnemyCount = Mathf.Max(1, enemyCount);
+        }
+
+        void ChangeSpriteOrder()
+        {
+            DefeatedEnemy.Do(enemy=>
+                enemy.EnemyViewMono.ChangeSpriteOrder(1));
+            CurrentBattleEnemy.Do(enemy=>
+                enemy.EnemyViewMono.ChangeSpriteOrder(2));
+
+            foreach (var (index, enemyOption) in WaitingEnemyList.Select((option, index) => (index, option)))
+            {
+                enemyOption.Do(enemy=>
+                    enemy.EnemyViewMono.ChangeSpriteOrder(index*(-1)));
+            }
         }
 
         static List<Option<EnemyMono>> GenerateWaitingEnemy(EnemyGeneratorMono enemyGeneratorMono, int generateWaitingEnemyCount)

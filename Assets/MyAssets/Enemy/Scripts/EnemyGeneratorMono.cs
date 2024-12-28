@@ -10,8 +10,9 @@ namespace Model.Enemy
 {
     public class EnemyGeneratorMono : MonoBehaviour
     {
-        [SerializeField] OptionMono<EnemyMono> enemyAdultMono;
-        [SerializeField] OptionMono<EnemyMono> enemyBabyMono;
+        [SerializeField] OptionMono<EnemyMono> enemyAdultMono = null!;
+        [SerializeField] OptionMono<EnemyMono> enemyBabyMono = null!;
+        [SerializeField] Transform enemyParent = null!;
 
         EnemyObjectPool _enemyObjectPool = null!;
 
@@ -55,7 +56,7 @@ namespace Model.Enemy
                 None: () =>
                 {
                     Debug.LogError("None");
-                    var enemyInstance = Instantiate(enemyMono);
+                    var enemyInstance = Instantiate(enemyMono,enemyParent);
                     return enemyInstance;
                 },
                 Some: existingEnemy => existingEnemy);

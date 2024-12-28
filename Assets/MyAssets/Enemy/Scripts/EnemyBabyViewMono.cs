@@ -25,6 +25,11 @@ namespace View
             spriteRenderer.sprite = defaultSprite;
         }
         
+        public override void ChangeSpriteOrder(int order)
+        {
+            spriteRenderer.sortingOrder = order;
+        }
+        
         public override void ChangeSpriteByEvaluationResult(EvaluationData.Evaluation evaluation)
         {
             switch (evaluation)
