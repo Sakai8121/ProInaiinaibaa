@@ -14,7 +14,6 @@ namespace MyAssets.Enemy.Scripts
         {
             if (_enemyMonoList == null)
                 _enemyMonoList = new List<Option<EnemyMono>>();
-            
             option.Do(enemy=>
             {
                 enemy.gameObject.SetActive(false);
@@ -27,6 +26,7 @@ namespace MyAssets.Enemy.Scripts
         {
             if (_enemyMonoList == null)
                 _enemyMonoList = new List<Option<EnemyMono>>();
+            Debug.LogError(_enemyMonoList.Count);
 
             if (_enemyMonoList.Count != 0)
             {

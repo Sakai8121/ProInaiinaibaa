@@ -1,4 +1,5 @@
 #nullable enable
+using DG.Tweening;
 using Model.GameSystem;
 using MyAssets.Enemy.Scripts;
 using UnityEngine;
@@ -11,6 +12,6 @@ namespace View
         public abstract void ChangeSpriteByEvaluationResult(EvaluationData.Evaluation evaluation);
         public abstract void ChangeAnimationSprite(EvaluationData.Evaluation evaluation);
         public abstract void ChangePosition(Vector2 position,bool requiresAnimation);
-        public abstract void Blown();
+        public abstract Sequence Blown();
     }
 }

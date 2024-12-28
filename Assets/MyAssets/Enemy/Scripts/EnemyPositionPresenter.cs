@@ -1,7 +1,10 @@
 ﻿#nullable enable
 using System.Linq;
+using DG.Tweening;
 using General;
+using MobileLibrary.Function;
 using Model.Enemy;
+using MyAssets.Enemy.Scripts;
 using UniRx;
 using UnityEngine;
 using VContainer;
@@ -11,17 +14,20 @@ namespace Presenter
 {
     public class EnemyPositionPresenter: IInitializable
     {
-        BattleEnemySwitcher _battleEnemySwitcher;
-        DisposeManager _disposeManager;
+        readonly BattleEnemySwitcher _battleEnemySwitcher;
+        readonly DisposeManager _disposeManager;
+        readonly EnemyObjectPool _enemyObjectPool;
 
         readonly Vector2 _battleEnemyPosition = new Vector2(3, -3);
         readonly Vector2 _firstWaitingEnemyPosition = new Vector2(7, -3);
         
         [Inject]
-        public EnemyPositionPresenter(BattleEnemySwitcher battleEnemySwitcher,DisposeManager disposeManager)
+        public EnemyPositionPresenter(BattleEnemySwitcher battleEnemySwitcher,DisposeManager disposeManager,
+            EnemyObjectPool enemyObjectPool)
         {
             _battleEnemySwitcher = battleEnemySwitcher;
             _disposeManager = disposeManager;
+            _enemyObjectPool = enemyObjectPool;
 
             SubscribeWithCurrentBattleEnemy();
         }
@@ -46,9 +52,11 @@ namespace Presenter
                 .ObserveEveryValueChanged(switcher => switcher.DefeatedEnemy)
                 .Subscribe(enemy =>
                 {
-                    enemy.Do(enemy =>
+                    enemy.Do(enemyMono =>
                     {
-                        enemy.EnemyViewMono.Blown();
+                        var blownSequence = enemyMono.EnemyViewMono.Blown();
+                        blownSequence
+                            .OnKill(()=>DisActiveEnemy(enemyMono));
                     });
                 })
                 .AddTo(_disposeManager.CompositeDisposable);
@@ -69,5 +77,13 @@ namespace Presenter
                 })
                 .AddTo(_disposeManager.CompositeDisposable);
         }
+        
+        void DisActiveEnemy(Option<EnemyMono> enemyOption)
+        {
+            enemyOption.Do(enemyMono=>
+                enemyMono.EnemyViewMono.transform.position = EnemyDefaultParameter.GeneratePosition);
+            _enemyObjectPool.AddDestroyedEnemy(enemyOption);
+        }
+        
     }
 }

@@ -36,7 +36,6 @@ namespace Model.Enemy
 
         public void SwitchToNextEnemy()
         {
-            _enemyObjectPool.AddDestroyedEnemy(DefeatedEnemy);
             DefeatedEnemy = CurrentBattleEnemy;
 
             // 1. 現在の戦闘敵を切り替え

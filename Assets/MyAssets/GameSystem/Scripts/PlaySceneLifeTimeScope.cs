@@ -2,6 +2,7 @@
 using Model.Enemy;
 using Model.Player;
 using MyAssets.Enemy.Scripts;
+using MyAssets.GameSystem.Scripts;
 using MyAssets.Player.Scripts;
 using Presenter;
 using VContainer;
@@ -21,11 +22,21 @@ namespace General
             builder.Register<DisposeManager>(Lifetime.Scoped);
             builder.Register<EnemyObjectPool>(Lifetime.Scoped);
             builder.Register<BattleEnemySwitcher>(Lifetime.Scoped);
+            builder.Register<EvaluationDecider>(Lifetime.Scoped);
+            builder.Register<ZoneStateHolder>(Lifetime.Scoped);
+            builder.Register<GameScoreHolder>(Lifetime.Scoped);
+            //builder.Register<EvaluationTargetTimeHolder>(Lifetime.Scoped).AsImplementedInterfaces();
+            //builder.Register<EvaluationTimeCounter>(Lifetime.Scoped).AsImplementedInterfaces();
             
             builder.RegisterEntryPoint<HandPresenter>();
             builder.RegisterEntryPoint<EnemyPositionPresenter>();
             builder.RegisterEntryPoint<HiddenObjectPresenter>();
             builder.RegisterEntryPoint<PlayerPresenter>();
+            builder.RegisterEntryPoint<EvaluationPresenter>();
+            builder.RegisterEntryPoint<ZoneStateObserver>();
+            builder.RegisterEntryPoint<EvaluationTargetTimeHolder>().AsSelf();
+            builder.RegisterEntryPoint<EvaluationTimeCounter>().AsSelf();
+            builder.RegisterEntryPoint<JudgeZoneExecutor>().AsSelf();
             
             // MonoBehaviourの登録
             builder.RegisterComponentInHierarchy<HandViewMono>();
@@ -33,6 +44,7 @@ namespace General
             builder.RegisterComponentInHierarchy<EnemyGeneratorMono>();
             builder.RegisterComponentInHierarchy<HiddenObjectViewMono>();
             builder.RegisterComponentInHierarchy<PlayerViewMono>();
+            builder.RegisterComponentInHierarchy<EvaluationViewMono>();
         }
     }
 }

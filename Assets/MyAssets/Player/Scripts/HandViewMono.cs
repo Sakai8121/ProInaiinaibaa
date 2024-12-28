@@ -52,12 +52,14 @@ namespace View
             rightHandSpriteRenderer.color = Color.white;
             leftHandSpriteRenderer.color = Color.white;
             rightGodHandsParent.SetActive(false);
+            leftGodHandsParent.SetActive(false);
         }
 
         public void ChangeHandSpriteToGod()
         {
             rightHandSpriteRenderer.color = Color.yellow;
             leftHandSpriteRenderer.color = Color.yellow;
+            rightGodHandsParent.SetActive(true);
             leftGodHandsParent.SetActive(true);
         }
     }

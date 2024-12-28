@@ -86,17 +86,17 @@ namespace View
                 .SetLink(gameObject);
         }
         
-        public override void Blown()
+        public override Sequence Blown()
         {
             if(_movePositionSequence.IsActive() && _movePositionSequence.IsPlaying())
                 _movePositionSequence.Kill();
 
-            _movePositionSequence = DOTween.Sequence()
+            return _movePositionSequence = DOTween.Sequence()
                 .Append(transform.DOMove
                     (EnemyDefaultParameter.BlownPosition, EnemyDefaultParameter.BlownAnimationSpeed))
                 .Join(transform.DORotate
                     (EnemyDefaultParameter.RotateValue, EnemyDefaultParameter.BlownAnimationSpeed))
-                .OnKill(() => transform.position = EnemyDefaultParameter.GeneratePosition)
+                //.OnKill(() => transform.position = EnemyDefaultParameter.GeneratePosition)
                 .SetLink(gameObject);
         }
     }
