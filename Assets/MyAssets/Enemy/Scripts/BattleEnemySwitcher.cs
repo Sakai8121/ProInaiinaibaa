@@ -75,7 +75,7 @@ namespace Model.Enemy
         static EnemyKind DecideRandomEnemyKind()
         {
             var randomProbability = Random.Range(0, 100);
-            const float babyAppearProbability = 70;
+            const float babyAppearProbability = 80;
 
             if (randomProbability < babyAppearProbability)
                 return EnemyKind.Baby;

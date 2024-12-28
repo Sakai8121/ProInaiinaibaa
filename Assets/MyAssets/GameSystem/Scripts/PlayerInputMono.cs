@@ -65,7 +65,6 @@ namespace MyAssets.GameSystem.Scripts
             var evaluation = _evaluationDecider.DecideEvaluation();
             _battleEnemySwitcher.CurrentBattleEnemy.Do(enemy =>
             {
-                Debug.LogError(evaluation);
                 enemy.EnemyViewMono.ChangeSpriteByEvaluationResult(evaluation);
                 _gameScoreHolder.AddScore(evaluation);
             });

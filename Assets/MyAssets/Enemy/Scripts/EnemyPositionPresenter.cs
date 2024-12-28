@@ -80,9 +80,12 @@ namespace Presenter
         
         void DisActiveEnemy(Option<EnemyMono> enemyOption)
         {
-            enemyOption.Do(enemyMono=>
-                enemyMono.EnemyViewMono.transform.position = EnemyDefaultParameter.GeneratePosition);
-            _enemyObjectPool.AddDestroyedEnemy(enemyOption);
+            enemyOption.Do(enemyMono =>
+            {
+                enemyMono.EnemyViewMono.transform.position = EnemyDefaultParameter.GeneratePosition;
+                _enemyObjectPool.AddDestroyedEnemy(enemyOption);
+            });
+
         }
         
     }

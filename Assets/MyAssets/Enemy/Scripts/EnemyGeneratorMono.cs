@@ -48,13 +48,13 @@ namespace Model.Enemy
 
         Option<EnemyMono> GenerateEnemy(EnemyMono enemyMono,EnemyKind enemyKind)
         {
-            var enemy = _enemyObjectPool.GetEnemy();
+            var enemy = _enemyObjectPool.GetEnemy(enemyKind);
 
             return enemy
-                .Where(existingEnemy  => existingEnemy .EnemyKind == enemyKind)
                 .Match<Option<EnemyMono>>(
                 None: () =>
                 {
+                    Debug.LogError("None");
                     var enemyInstance = Instantiate(enemyMono);
                     return enemyInstance;
                 },
