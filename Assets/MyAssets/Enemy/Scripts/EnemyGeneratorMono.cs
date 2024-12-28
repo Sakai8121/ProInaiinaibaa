@@ -55,7 +55,6 @@ namespace Model.Enemy
                 .Match<Option<EnemyMono>>(
                 None: () =>
                 {
-                    Debug.LogError("None");
                     var enemyInstance = Instantiate(enemyMono,enemyParent);
                     return enemyInstance;
                 },

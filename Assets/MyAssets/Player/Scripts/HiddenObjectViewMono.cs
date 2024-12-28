@@ -26,12 +26,14 @@ namespace MyAssets.Player.Scripts
                 case HiddenObjectStateHolder.HiddenObject.Money:
                     _moneyAnimationSequence = DOTween.Sequence()
                         .Append(moneyTransform.DOScale(_defaultSize, _moneyAppearAnimationTime))
+                        .SetEase(Ease.OutQuint)
                         .SetLink(gameObject)
                         .OnKill(() => moneyTransform.localScale = _defaultSize);
                     break;
                 case HiddenObjectStateHolder.HiddenObject.Human:
                     _moneyAnimationSequence = DOTween.Sequence()
                         .Append(moneyTransform.DOScale(_dismissSize, _moneyDismissAnimationTime))
+                        .SetEase(Ease.OutQuint)
                         .SetLink(gameObject)
                         .OnKill(() => moneyTransform.localScale = _dismissSize);
                     break;

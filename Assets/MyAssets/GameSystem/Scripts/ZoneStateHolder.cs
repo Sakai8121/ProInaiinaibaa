@@ -16,8 +16,12 @@ namespace MyAssets.GameSystem.Scripts
 
         public void GoZoneMode()
         {
-            Debug.LogError("InZone");
             CurrentZoneState = ZoneState.InZone;
+        }
+
+        public void EndZoneMode()
+        {
+            CurrentZoneState = ZoneState.NotZone;
         }
         
         public bool IsZoneState()

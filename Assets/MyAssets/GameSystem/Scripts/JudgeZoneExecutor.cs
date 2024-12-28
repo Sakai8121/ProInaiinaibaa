@@ -11,17 +11,19 @@ namespace MyAssets.GameSystem.Scripts
 {
     public class JudgeZoneExecutor : IInitializable
     {
+        ZoneStateHolder _zoneStateHolder;
         const int RequiredEvaluationCountOnZone = 3;
         
         [Inject]
         public JudgeZoneExecutor(GameScoreHolder gameScoreHolder,ZoneStateHolder zoneStateHolder)
         {
+            _zoneStateHolder = zoneStateHolder;
+            
             gameScoreHolder.ObserveEveryValueChanged(holder => holder.EvaluationList)
-                .Where(_ => !zoneStateHolder.IsZoneState())
-                .Select(list => CheckCanEnterZoneMode(list)) // 評価だけを行う
-                .Subscribe(result =>
+                //.Where(_ => !zoneStateHolder.IsZoneState())
+                .Subscribe(list =>
                 {
-                    var (canEnterZone, updatedEvaluationList) = result;
+                    var (canEnterZone, updatedEvaluationList) = CheckCanEnterZoneMode(list);
 
                     if (canEnterZone)
                         zoneStateHolder.GoZoneMode();
@@ -44,7 +46,8 @@ namespace MyAssets.GameSystem.Scripts
                 }
                 else if (evaluation == EvaluationData.Evaluation.Miss || evaluation == EvaluationData.Evaluation.Normal)
                 {
-                    //ミスやノーマル評価だとそれまで蓄積されていたGood評価が消える
+                    //ミスやノーマル評価だとそれまで蓄積されていたGood評価が消え、ゾーン状態ならゾーン状態を終了する
+                    _zoneStateHolder.EndZoneMode();
                     return (false,new List<EvaluationData.Evaluation>());
                 }
                 else if(evaluation == EvaluationData.Evaluation.Good)
@@ -52,7 +55,7 @@ namespace MyAssets.GameSystem.Scripts
                     //グッド評価だと蓄積される
                     goodEvaluationList.Add(evaluation);
                     if(goodEvaluationList.Count == RequiredEvaluationCountOnZone)
-                        return (true,goodEvaluationList);
+                        return (true,new List<EvaluationData.Evaluation>());
                 }
             }
             
