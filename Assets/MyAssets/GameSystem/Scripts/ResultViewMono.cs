@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using unityroom.Api;
 using VContainer;
 
 namespace MyAssets.GameSystem.Scripts
@@ -57,6 +58,10 @@ namespace MyAssets.GameSystem.Scripts
             goodText.text = evaluationCountDictionary[EvaluationData.Evaluation.Good].ToString();
             badText.text = evaluationCountDictionary[EvaluationData.Evaluation.Normal].ToString();
             missText.text = evaluationCountDictionary[EvaluationData.Evaluation.Miss].ToString();
+            
+            // ボードNo1にスコア123.45fを送信する。
+            UnityroomApiClient.Instance.SendScore(1, score, ScoreboardWriteMode.HighScoreDesc);
+
         }
         
     }
