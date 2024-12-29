@@ -33,7 +33,7 @@ namespace MyAssets.GameSystem.Scripts
                 });
         }
 
-        (bool,List<EvaluationData.Evaluation>) CheckCanEnterZoneMode(List<EvaluationData.Evaluation> list)
+        public (bool,List<EvaluationData.Evaluation>) CheckCanEnterZoneMode(List<EvaluationData.Evaluation> list)
         {
             List<EvaluationData.Evaluation> goodEvaluationList = new ();
             
