@@ -20,6 +20,7 @@ namespace MyAssets.GameSystem.Scripts
         [SerializeField] TextMeshProUGUI goodText = null!;
         [SerializeField] TextMeshProUGUI badText = null!;
         [SerializeField] TextMeshProUGUI missText = null!;
+        [SerializeField] TextMeshProUGUI comboText = null!;
 
         [SerializeField] Button endGameButton = null!;
         [SerializeField] Button retryGameButton = null!;
@@ -51,7 +52,7 @@ namespace MyAssets.GameSystem.Scripts
             });
         }
 
-        public void ActiveResultUI(int score,Dictionary<EvaluationData.Evaluation,int> evaluationCountDictionary)
+        public void ActiveResultUI(int score,int maxCombo,Dictionary<EvaluationData.Evaluation,int> evaluationCountDictionary)
         {
             resultParentObject.SetActive(true);
             playUIParentObject.SetActive(false);
@@ -61,6 +62,8 @@ namespace MyAssets.GameSystem.Scripts
             goodText.text = evaluationCountDictionary[EvaluationData.Evaluation.Good].ToString();
             badText.text = evaluationCountDictionary[EvaluationData.Evaluation.Normal].ToString();
             missText.text = evaluationCountDictionary[EvaluationData.Evaluation.Miss].ToString();
+
+            comboText.text = maxCombo.ToString();
             
             // ボードNo1にスコア123.45fを送信する。
             UnityroomApiClient.Instance.SendScore(1, score, ScoreboardWriteMode.HighScoreDesc);

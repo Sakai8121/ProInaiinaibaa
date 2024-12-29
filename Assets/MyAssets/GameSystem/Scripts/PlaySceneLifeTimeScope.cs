@@ -59,6 +59,7 @@ namespace General
             builder.RegisterComponentInHierarchy<SoundManager>();
             builder.RegisterComponentInHierarchy<ResultViewMono>();
             builder.RegisterComponentInHierarchy<ComboTextViewMono>();
+            builder.RegisterComponentInHierarchy<WaitingStartImageViewMono>();
         }
     }
 }

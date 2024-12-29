@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Model.GameSystem;
 using UnityEngine;
+using VContainer;
 
 namespace MyAssets.GameSystem.Scripts
 {
@@ -26,10 +27,18 @@ namespace MyAssets.GameSystem.Scripts
             { EvaluationData.Evaluation.Normal,1 },
             { EvaluationData.Evaluation.Miss, 0 }
         };
+
+        ComboCountHolder _comboCountHolder;
+
+        [Inject]
+        public GameScoreHolder(ComboCountHolder comboCountHolder)
+        {
+            _comboCountHolder = comboCountHolder;
+        }
         
         public void AddScore(EvaluationData.Evaluation evaluation)
         {
-            GameScore += _evaluationScoreMap[evaluation];
+            GameScore += _evaluationScoreMap[evaluation] * _comboCountHolder.GetScoreRate();
             _evaluationCount[evaluation] += 1;
 
             var newList = new List<EvaluationData.Evaluation>(EvaluationList);

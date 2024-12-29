@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using Model.GameSystem;
+using UnityEngine;
 
 namespace MyAssets.GameSystem.Scripts
 {
@@ -15,6 +16,11 @@ namespace MyAssets.GameSystem.Scripts
                 EndCombo();
             else
                 IncrementComboCount();
+        }
+
+        public int GetScoreRate()
+        {
+            return 1 + Mathf.FloorToInt(CurrentComboCount / 10.0f);
         }
 
         void IncrementComboCount()

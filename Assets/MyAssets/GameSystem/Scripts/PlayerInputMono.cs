@@ -24,6 +24,7 @@ namespace MyAssets.GameSystem.Scripts
         CameraScroll _cameraScroll = null!;
         PlayerStateHolder _playerStateHolder = null!;
         ComboCountHolder _comboCountHolder = null!;
+        WaitingStartImageViewMono _waitingStartImageViewMono = null!;
         
         [Inject]
         public void Construct(HandStateHolder handStateHolder,HiddenObjectStateHolder hiddenObjectStateHolder,
@@ -31,7 +32,8 @@ namespace MyAssets.GameSystem.Scripts
             EvaluationTimeCounter evaluationTimeCounter,EvaluationTargetTimeHolder evaluationTargetTimeHolder,
             GameScoreHolder gameScoreHolder,GameStartFlagHolder gameStartFlagHolder,
             GameTimeHolder gameTimeHolder,EvaluationTextViewMono evaluationTextViewMono,
-            CameraScroll cameraScroll,PlayerStateHolder playerStateHolder,ComboCountHolder comboCountHolder)
+            CameraScroll cameraScroll,PlayerStateHolder playerStateHolder,ComboCountHolder comboCountHolder,
+            WaitingStartImageViewMono waitingStartImageViewMono)
         {
             _handStateHolder = handStateHolder;
             _hiddenObjectStateHolder = hiddenObjectStateHolder;
@@ -46,6 +48,7 @@ namespace MyAssets.GameSystem.Scripts
             _cameraScroll = cameraScroll;
             _playerStateHolder = playerStateHolder;
             _comboCountHolder = comboCountHolder;
+            _waitingStartImageViewMono = waitingStartImageViewMono;
         }
         
         void Update()
@@ -84,6 +87,7 @@ namespace MyAssets.GameSystem.Scripts
                     _gameTimeHolder.RestartTimer();
                     _cameraScroll.ReStartCameraMove();
                     SoundManager.Instance.PlayBGM(BGMSoundData.BGM.PlayBgm);
+                    _waitingStartImageViewMono.DisActiveStartImage();
                     return;
                 }
                 

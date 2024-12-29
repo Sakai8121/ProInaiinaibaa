@@ -16,15 +16,17 @@ namespace MyAssets.GameSystem.Scripts
         GameStartFlagHolder _gameStartFlagHolder;
         ResultViewMono _resultViewMono;
         GameScoreHolder _gameScoreHolder;
+        ComboCountHolder _comboCountHolder;
         
         [Inject]
         public GameTimeHolder(TimeStateHolder timeStateHolder,GameStartFlagHolder gameStartFlagHolder,
-            ResultViewMono resultViewMono,GameScoreHolder gameScoreHolder)
+            ResultViewMono resultViewMono,GameScoreHolder gameScoreHolder,ComboCountHolder comboCountHolder)
         {
             _timeStateHolder = timeStateHolder;
             _gameStartFlagHolder = gameStartFlagHolder;
             _resultViewMono = resultViewMono;
             _gameScoreHolder = gameScoreHolder;
+            _comboCountHolder = comboCountHolder;
         }
         
         public void Tick()
@@ -67,7 +69,7 @@ namespace MyAssets.GameSystem.Scripts
             SoundManager.Instance.StopBGM(BGMSoundData.BGM.ZoneBgm);
             _gameStartFlagHolder.EndGame();
                 
-            _resultViewMono.ActiveResultUI(_gameScoreHolder.GameScore,_gameScoreHolder.EvaluationCount);
+            _resultViewMono.ActiveResultUI(_gameScoreHolder.GameScore,_comboCountHolder.MaxComboCount,_gameScoreHolder.EvaluationCount);
         }
 
         void CheckCurrentTimeState()
