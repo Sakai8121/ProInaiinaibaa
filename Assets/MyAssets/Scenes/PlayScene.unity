@@ -13670,10 +13670,10 @@ MonoBehaviour:
   seAudioSource: {fileID: 1856306452}
   bgmSoundDatas:
   - bgm: 0
-    audioClip: {fileID: 8300000, guid: 53c20378c447f9b4a99a902f576fea47, type: 3}
-    volume: 0.3
+    audioClip: {fileID: 8300000, guid: d7af52e047352fd478f85afd5f695d6f, type: 3}
+    volume: 1
   - bgm: 1
-    audioClip: {fileID: 8300000, guid: 5a58434ed42ece34fb92417d9954eab6, type: 3}
+    audioClip: {fileID: 8300000, guid: 53c20378c447f9b4a99a902f576fea47, type: 3}
     volume: 1
   seSoundDatas:
   - se: 0
