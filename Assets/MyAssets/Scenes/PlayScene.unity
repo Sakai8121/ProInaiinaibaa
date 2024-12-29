@@ -1978,7 +1978,7 @@ MonoBehaviour:
   goodText: {fileID: 198174156}
   badText: {fileID: 293398779}
   missText: {fileID: 18328745}
-  comboText: {fileID: 0}
+  comboText: {fileID: 225013698}
   endGameButton: {fileID: 1739482875}
   retryGameButton: {fileID: 140369799}
   backTitleButton: {fileID: 1843783070}
