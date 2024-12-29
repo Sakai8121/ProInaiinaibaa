@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\JudgeZoneExecutor.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\ComboCountHolder.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\Function\Validation.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\HandViewMono.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\GameStartFlagHolder.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Assets\MyAssets\Player\Scripts\HiddenObjectStateHolder.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\EvaluationData.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\EvaluationTargetTimeHolder.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\ComboCountPresenter.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\PlaySceneLifeTimeScope.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\BattleEnemySwitcher.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\GameTimeHolder.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Assets\MyAssets\Enemy\Scripts\IEnemyChangeTransformView.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\ScoreTextViewMono.cs" />
     <Compile Include="Assets\MyAssets\BackGroundResources\CodeRedCat\4kVectorLandscape\Demo\Scripts\CameraScroll.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\ComboTextViewMono.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\TimeAndScorePresenter.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\PlayerPresenter.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\TimeStateHolder.cs" />

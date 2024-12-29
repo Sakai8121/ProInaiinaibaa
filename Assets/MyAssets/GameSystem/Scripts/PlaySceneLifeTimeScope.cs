@@ -28,6 +28,7 @@ namespace General
             builder.Register<GameScoreHolder>(Lifetime.Scoped);
             builder.Register<TimeStateHolder>(Lifetime.Scoped);
             builder.Register<GameStartFlagHolder>(Lifetime.Scoped);
+            builder.Register<ComboCountHolder>(Lifetime.Scoped);
             
             builder.RegisterEntryPoint<HandPresenter>();
             builder.RegisterEntryPoint<EnemyPositionPresenter>();
@@ -37,6 +38,7 @@ namespace General
             builder.RegisterEntryPoint<ZoneStateObserver>();
             builder.RegisterEntryPoint<TimeStatePresenter>();
             builder.RegisterEntryPoint<TimeAndScorePresenter>();
+            builder.RegisterEntryPoint<ComboCountPresenter>();
             builder.RegisterEntryPoint<EvaluationTargetTimeHolder>().AsSelf();
             builder.RegisterEntryPoint<EvaluationTimeCounter>().AsSelf();
             builder.RegisterEntryPoint<JudgeZoneExecutor>().AsSelf();
@@ -56,6 +58,7 @@ namespace General
             builder.RegisterComponentInHierarchy<TimeTextViewMono>();
             builder.RegisterComponentInHierarchy<SoundManager>();
             builder.RegisterComponentInHierarchy<ResultViewMono>();
+            builder.RegisterComponentInHierarchy<ComboTextViewMono>();
         }
     }
 }

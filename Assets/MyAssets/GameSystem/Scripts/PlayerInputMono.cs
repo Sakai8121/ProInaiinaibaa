@@ -22,7 +22,8 @@ namespace MyAssets.GameSystem.Scripts
         GameTimeHolder _gameTimeHolder = null!;
         EvaluationTextViewMono _evaluationTextViewMono = null!;
         CameraScroll _cameraScroll = null!;
-        PlayerStateHolder _playerStateHolder;
+        PlayerStateHolder _playerStateHolder = null!;
+        ComboCountHolder _comboCountHolder = null!;
         
         [Inject]
         public void Construct(HandStateHolder handStateHolder,HiddenObjectStateHolder hiddenObjectStateHolder,
@@ -30,7 +31,7 @@ namespace MyAssets.GameSystem.Scripts
             EvaluationTimeCounter evaluationTimeCounter,EvaluationTargetTimeHolder evaluationTargetTimeHolder,
             GameScoreHolder gameScoreHolder,GameStartFlagHolder gameStartFlagHolder,
             GameTimeHolder gameTimeHolder,EvaluationTextViewMono evaluationTextViewMono,
-            CameraScroll cameraScroll,PlayerStateHolder playerStateHolder)
+            CameraScroll cameraScroll,PlayerStateHolder playerStateHolder,ComboCountHolder comboCountHolder)
         {
             _handStateHolder = handStateHolder;
             _hiddenObjectStateHolder = hiddenObjectStateHolder;
@@ -44,6 +45,7 @@ namespace MyAssets.GameSystem.Scripts
             _evaluationTextViewMono = evaluationTextViewMono;
             _cameraScroll = cameraScroll;
             _playerStateHolder = playerStateHolder;
+            _comboCountHolder = comboCountHolder;
         }
         
         void Update()
@@ -119,6 +121,7 @@ namespace MyAssets.GameSystem.Scripts
                 _gameScoreHolder.AddScore(evaluation);
                 _evaluationTextViewMono.ActiveEvaluationText(evaluation);
                 EvaluationSound(evaluation);
+                _comboCountHolder.TryIncrementComboCount(evaluation);
             });
         }
 
