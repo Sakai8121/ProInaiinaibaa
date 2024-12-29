@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System.Collections.Generic;
+using General;
 using Model.GameSystem;
 using TMPro;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace MyAssets.GameSystem.Scripts
         [SerializeField] Button backTitleButton = null!;
 
         [Inject]
-        public void Construct(SoundManager soundManager)
+        public void Construct(SoundManager soundManager,DisposeManager disposeManager)
         {
             endGameButton.onClick.AddListener(() =>
             {
@@ -39,11 +40,13 @@ namespace MyAssets.GameSystem.Scripts
             retryGameButton.onClick.AddListener(()=>
             {
                 soundManager.DeleteInstance();
+                disposeManager.Dispose();
                 SceneManager.LoadScene("PlayScene");
             });
             backTitleButton.onClick.AddListener(()=>
             {
                 soundManager.DeleteInstance();
+                disposeManager.Dispose();
                 SceneManager.LoadScene("TitleScene");
             });
         }

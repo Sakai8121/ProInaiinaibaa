@@ -23,6 +23,7 @@ namespace MyAssets.GameSystem.Scripts
         private void Awake()
         {
             Instance = this;
+            masterVolume = GameInfoHolderStatic.MasterVolume;
         }
 
         public void DeleteInstance()

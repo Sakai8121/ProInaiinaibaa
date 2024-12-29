@@ -59,6 +59,7 @@
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\ResultViewMono.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyObjectPool.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\PlayerViewMono.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\GameInfoHolderStatic.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\Function\OptionTest.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\HandPresenter.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\TimeTextViewMono.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\MyAssets\OptionScripts\Function\OptionList.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\LinqExtension.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyAdultViewMono.cs" />
+    <Compile Include="Assets\MyAssets\Title\TitleViewMono.cs" />
     <Compile Include="Assets\MyAssets\Enemy\Scripts\EnemyMono.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\HiddenObjectStateHolder.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\EvaluationData.cs" />
