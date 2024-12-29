@@ -11,13 +11,13 @@ namespace MyAssets.GameSystem.Scripts
 
         public float CurrentTargetTime
         {
-            get { return _currentTargetTime == 0 ? 3f : _currentTargetTime; }
+            get { return _currentTargetTime == 0 ? 2f : _currentTargetTime; }
             private set { _currentTargetTime = value; }
         }
 
         public void ChangeCurrentTargetTimeRandomly()
         {
-            List<float> targetTimeList = new() { 1f, 2, 3 };
+            List<float> targetTimeList = new() { 1.5f, 2, 2.5f };
             _currentTargetTime = targetTimeList[Random.Range(0, targetTimeList.Count)];
         }
     }

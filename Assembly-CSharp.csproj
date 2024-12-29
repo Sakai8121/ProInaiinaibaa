@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\JudgeZoneExecutor.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\ComboCountHolder.cs" />
+    <Compile Include="Assets\MyAssets\GameSystem\Scripts\TutorialStateChangerMono.cs" />
     <Compile Include="Assets\MyAssets\OptionScripts\Function\Validation.cs" />
     <Compile Include="Assets\MyAssets\Player\Scripts\HandViewMono.cs" />
     <Compile Include="Assets\MyAssets\GameSystem\Scripts\GameStartFlagHolder.cs" />

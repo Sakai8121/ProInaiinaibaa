@@ -81,6 +81,9 @@ namespace MyAssets.GameSystem.Scripts
             
             if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Return))
             {
+                if(GameInfoHolderStatic.IsRequiredTutorial)
+                    return;
+                
                 if (!_gameStartFlagHolder.IsStartingGame)
                 {
                     _gameStartFlagHolder.StartGame();
